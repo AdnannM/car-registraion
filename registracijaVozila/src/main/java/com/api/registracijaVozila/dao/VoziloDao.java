@@ -17,7 +17,8 @@ public class VoziloDao {
 	@Column(name = "id")
 	private Integer Id;
 	
-	@Column(name = "registracijskaOznaka")
+	@Column(name = "registracijskaOznaka",
+			unique = true)
 	private String registracijskaOznaka;
 	
 	public VoziloDao() {
