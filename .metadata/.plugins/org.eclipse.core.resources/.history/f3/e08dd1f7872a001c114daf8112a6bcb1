@@ -1,0 +1,11 @@
+package com.api.registracijaVozila.service;
+
+import java.util.List;
+
+import com.api.registracijaVozila.dao.VoziloDao;
+
+public interface VoziloService {
+
+	List<VoziloDao> sveVozila();
+
+}
