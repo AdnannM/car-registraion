@@ -25,6 +25,9 @@ public class ModelVozilaDao {
 	@Column(name = "godina")
 	private Integer godina;
 	
+	@Column(name = "proizdvodjac")
+	private String proizdvodjac;
+	
 	// Add Karakteristike Vozila
 	
 	public ModelVozilaDao() {
@@ -55,14 +58,23 @@ public class ModelVozilaDao {
 		this.godina = godina;
 	}
 
+	public String getProizdvodjac() {
+		return proizdvodjac;
+	}
+
+	public void setProizdvodjac(String proizdvodjac) {
+		this.proizdvodjac = proizdvodjac;
+	}
+
 	@Override
 	public String toString() {
-		return "ModelVozilaDao [id=" + id + ", model=" + model + ", godina=" + godina + "]";
+		return "ModelVozilaDao [id=" + id + ", model=" + model + ", godina=" + godina + ", proizdvodjac=" + proizdvodjac
+				+ "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(godina, id, model);
+		return Objects.hash(godina, id, model, proizdvodjac);
 	}
 
 	@Override
@@ -75,6 +87,9 @@ public class ModelVozilaDao {
 			return false;
 		ModelVozilaDao other = (ModelVozilaDao) obj;
 		return Objects.equals(godina, other.godina) && Objects.equals(id, other.id)
-				&& Objects.equals(model, other.model);
+				&& Objects.equals(model, other.model) && Objects.equals(proizdvodjac, other.proizdvodjac);
 	}
+	
+	
+
 }

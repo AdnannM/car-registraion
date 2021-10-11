@@ -32,8 +32,7 @@ import io.swagger.annotations.ApiResponses;
 													message = "Doe to security your access request cannot be authorized"),
 				@io.swagger.annotations.ApiResponse(code = 500,
 													message = "The server is down.")
-		
-}
+	}
 )
 public class VoziloController {
 
