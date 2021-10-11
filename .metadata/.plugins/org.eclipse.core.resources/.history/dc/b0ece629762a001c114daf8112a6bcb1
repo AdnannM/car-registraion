@@ -1,0 +1,5 @@
+package com.api.registracijaVozila.dto;
+
+public class VoziloDto {
+
+}

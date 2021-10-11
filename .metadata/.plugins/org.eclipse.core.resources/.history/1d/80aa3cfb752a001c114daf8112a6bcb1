@@ -1,0 +1,5 @@
+package com.api.registracijaVozila.dao;
+
+public class VoziloDao {
+
+}
