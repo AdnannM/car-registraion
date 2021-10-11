@@ -2,7 +2,7 @@ package com.api.registracijaVozila.dto;
 
 import java.sql.Date;
 
-public class RegistrovanoNaOsobuDTO {
+public class RegistrovanoNaOsobuDto {
 
 	private Integer id;
 	private String ime;
