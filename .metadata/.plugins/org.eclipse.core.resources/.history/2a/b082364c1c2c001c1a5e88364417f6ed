@@ -95,14 +95,7 @@ public class RegistrovanoNaOsobuServiceImpl implements RegistrovanoNaOsobuServic
 
 	@Override
 	public void deleteRegistrovanuOsobu(Integer id) {
-		if(registrovanoNaOsobuRepository.getById(id).getId().equals(id)) {
-			boolean exist = registrovanoNaOsobuRepository.existsById(id);
-			
-			if(!exist) {
-				throw new IllegalStateException("Register Perseon wiht id " + id + "does not exist");
-			}
-			
-			registrovanoNaOsobuRepository.deleteById(id);
-		}
+		// TODO Auto-generated method stub
+		
 	}
 }
