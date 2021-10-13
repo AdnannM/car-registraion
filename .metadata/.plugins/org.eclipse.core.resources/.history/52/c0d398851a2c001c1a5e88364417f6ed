@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.dao.RegistrovanoNaOsobuDao;
+import com.api.dao.VoziloDao;
 import com.api.dto.RegistrovanoNaOsobuDto;
 import com.api.repository.RegistrovanoNaOsobuRepository;
 
@@ -67,30 +68,10 @@ public class RegistrovanoNaOsobuServiceImpl implements RegistrovanoNaOsobuServic
 
 	@Override
 	public RegistrovanoNaOsobuDto updateRegistrovanuOsobu(Integer id, RegistrovanoNaOsobuDto registrovanoNaOsobu) {
-		Optional<RegistrovanoNaOsobuDao> regOsobaIzBazeResult = Optional.of(registrovanoNaOsobuRepository.findById(id))
-				.orElseThrow(() -> new IllegalStateException("Register Person with id " + id + "does not exist"));
+//		Optional<VoziloDao> vozilaIzBazeResult = Optional.of(registrovanoNaOsobuRepository.findById(id))
+//				.orElseThrow(() -> new IllegalStateException("Vozilo with id " + id + "does not exist"));
 		
-		RegistrovanoNaOsobuDao regOsobaIzBaze = regOsobaIzBazeResult.get();
-		
-		regOsobaIzBaze.setId(registrovanoNaOsobu.getId());
-		regOsobaIzBaze.setIme(registrovanoNaOsobu.getIme());
-		regOsobaIzBaze.setPrezime(registrovanoNaOsobu.getPrezime());
-		regOsobaIzBaze.setGrad(registrovanoNaOsobu.getGrad());
-		regOsobaIzBaze.setJmbg(registrovanoNaOsobu.getJmbg());
-		regOsobaIzBaze.setDatumRodjenja(registrovanoNaOsobu.getDatumRodjenja());
-		
-		RegistrovanoNaOsobuDao spremiRegOsobu  = registrovanoNaOsobuRepository.save(regOsobaIzBaze);
-		
-		RegistrovanoNaOsobuDto spremiRegOsobuDto = new RegistrovanoNaOsobuDto();
-		
-		spremiRegOsobuDto.setId(spremiRegOsobu.getId());
-		spremiRegOsobuDto.setIme(spremiRegOsobu.getIme());
-		spremiRegOsobuDto.setPrezime(spremiRegOsobu.getPrezime());
-		spremiRegOsobuDto.setGrad(spremiRegOsobu.getGrad());
-		spremiRegOsobuDto.setJmbg(spremiRegOsobu.getJmbg());
-		spremiRegOsobuDto.setDatumRodjenja(spremiRegOsobu.getDatumRodjenja());
-		
-		return spremiRegOsobuDto;
+		return null;
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.dao.RegistrovanoNaOsobuDao;
+import com.api.dao.VoziloDao;
 import com.api.dto.RegistrovanoNaOsobuDto;
 import com.api.repository.RegistrovanoNaOsobuRepository;
 
@@ -84,13 +85,7 @@ public class RegistrovanoNaOsobuServiceImpl implements RegistrovanoNaOsobuServic
 		RegistrovanoNaOsobuDto spremiRegOsobuDto = new RegistrovanoNaOsobuDto();
 		
 		spremiRegOsobuDto.setId(spremiRegOsobu.getId());
-		spremiRegOsobuDto.setIme(spremiRegOsobu.getIme());
-		spremiRegOsobuDto.setPrezime(spremiRegOsobu.getPrezime());
-		spremiRegOsobuDto.setGrad(spremiRegOsobu.getGrad());
-		spremiRegOsobuDto.setJmbg(spremiRegOsobu.getJmbg());
-		spremiRegOsobuDto.setDatumRodjenja(spremiRegOsobu.getDatumRodjenja());
-		
-		return spremiRegOsobuDto;
+		return null;
 	}
 
 	@Override
