@@ -44,19 +44,19 @@ public class RegistrovanoNaOsobuController {
 	
 	@PostMapping("/registrovano/add")
 	public ResponseEntity<RegistrovanoNaOsobuDto> addRegistrovaneOsobe(@RequestBody RegistrovanoNaOsobuDto registrovanoNaOsobu) {
-		RegistrovanoNaOsobuDto novaRegOsoba = registrovanoNaOsobuService.createVozilo(registrovanoNaOsobu);
+		RegistrovanoNaOsobuDto novaRegOsoba = registrovanoNaOsobuService.createRegistrovanuOsobu(registrovanoNaOsobu);
 		return new ResponseEntity<RegistrovanoNaOsobuDto>(novaRegOsoba, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/registrovano/update{id}")
 	public ResponseEntity<RegistrovanoNaOsobuDto> updateRegistrovaneOsobe(@PathVariable Integer id, @RequestBody  RegistrovanoNaOsobuDto registrovanoNaOsobu) {
-		RegistrovanoNaOsobuDto ispraviRegistrovanuOsobu = registrovanoNaOsobuService.updateVozilo(id,registrovanoNaOsobu);
+		RegistrovanoNaOsobuDto ispraviRegistrovanuOsobu = registrovanoNaOsobuService.updateRegistrovanuOsobu(id,registrovanoNaOsobu);
 		return new ResponseEntity<RegistrovanoNaOsobuDto>(ispraviRegistrovanuOsobu, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/registrovano/delete{id}")
 	public ResponseEntity<?>deleteRegistrovanuOsobu(@PathVariable("id") Integer id) {
-		registrovanoNaOsobuService.deleteVozilo(id);
+		registrovanoNaOsobuService.deleteRegistrovanuOsobu(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	

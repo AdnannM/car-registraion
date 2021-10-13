@@ -10,10 +10,10 @@ public interface RegistrovanoNaOsobuService {
 
 	List<RegistrovanoNaOsobuDto> sveRegistrovaneOsobe();
 
-	RegistrovanoNaOsobuDto createVozilo(RegistrovanoNaOsobuDto registrovanoNaOsobu);
+	RegistrovanoNaOsobuDto createRegistrovanuOsobu(RegistrovanoNaOsobuDto registrovanoNaOsobu);
 
-	RegistrovanoNaOsobuDto updateVozilo(Integer id, RegistrovanoNaOsobuDto registrovanoNaOsobu);
+	RegistrovanoNaOsobuDto updateRegistrovanuOsobu(Integer id, RegistrovanoNaOsobuDto registrovanoNaOsobu);
 
-	void deleteVozilo(Integer id);
+	void deleteRegistrovanuOsobu(Integer id);
 
 }
