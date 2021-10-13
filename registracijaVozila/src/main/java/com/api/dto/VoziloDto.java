@@ -6,7 +6,15 @@ public class VoziloDto {
 	private Integer id;
 	private String registracijskaOznaka;
 	
+	RegistrovanoNaOsobuDto registrovanoNaOsobuDto;
 	
+	
+	public RegistrovanoNaOsobuDto getRegistrovanoNaOsobuDto() {
+		return registrovanoNaOsobuDto;
+	}
+	public void setRegistrovanoNaOsobuDto(RegistrovanoNaOsobuDto registrovanoNaOsobuDto) {
+		this.registrovanoNaOsobuDto = registrovanoNaOsobuDto;
+	}
 	public Integer getId() {
 		return id;
 	}

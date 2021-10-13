@@ -18,15 +18,13 @@ import javax.validation.constraints.Min;
 public class RegistrovanoNaOsobuDao {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
 	
 	@Column(name = "ime",
 			unique = true)
 
-	
 	private String ime;
 	
 	@Column(name = "prezime")
@@ -50,7 +48,7 @@ public class RegistrovanoNaOsobuDao {
 	public RegistrovanoNaOsobuDao() {
 		
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -99,15 +97,23 @@ public class RegistrovanoNaOsobuDao {
 		this.grad = grad;
 	}
 
+	public VoziloDao getVoziloDao() {
+		return voziloDao;
+	}
+
+	public void setVoziloDao(VoziloDao voziloDao) {
+		this.voziloDao = voziloDao;
+	}
+
 	@Override
 	public String toString() {
 		return "RegistrovanoNaOsobuDao [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", jmbg=" + jmbg
-				+ ", datumRodjenja=" + datumRodjenja + ", grad=" + grad + "]";
+				+ ", datumRodjenja=" + datumRodjenja + ", grad=" + grad + ", voziloDao=" + voziloDao + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(datumRodjenja, grad, id, ime, jmbg, prezime);
+		return Objects.hash(datumRodjenja, grad, id, ime, jmbg, prezime, voziloDao);
 	}
 
 	@Override
@@ -121,6 +127,9 @@ public class RegistrovanoNaOsobuDao {
 		RegistrovanoNaOsobuDao other = (RegistrovanoNaOsobuDao) obj;
 		return Objects.equals(datumRodjenja, other.datumRodjenja) && Objects.equals(grad, other.grad)
 				&& Objects.equals(id, other.id) && Objects.equals(ime, other.ime) && jmbg == other.jmbg
-				&& Objects.equals(prezime, other.prezime);
+				&& Objects.equals(prezime, other.prezime) && Objects.equals(voziloDao, other.voziloDao);
 	}
+	
+	
+	
 }
