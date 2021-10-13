@@ -1,0 +1,91 @@
+package com.api.registracijaVozila.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.api.registracijaVozila.dao.VoziloDao;
+import com.api.registracijaVozila.dto.VoziloDto;
+import com.api.registracijaVozila.repository.VoziloRepository;
+
+
+@Service
+public class VoziloServiceImpl implements VoziloService {
+
+	@Autowired
+	VoziloRepository voziloRepositroy;
+
+	@Override
+	public List<VoziloDto> sveVozila() {
+		
+		List<VoziloDao> empListDb = voziloRepositroy.findAll();
+		List<VoziloDto> resultList = new ArrayList<VoziloDto>();
+		
+		if (empListDb.isEmpty()) {
+			return resultList;
+		}
+		
+		for (VoziloDao voziloDao : empListDb) {
+			VoziloDto novoVoziloDto = new VoziloDto();
+			novoVoziloDto.setId(voziloDao.getId());
+			novoVoziloDto.setRegistracijskaOznaka(voziloDao.getRegistracijskaOznaka());
+			
+			
+			
+			
+			resultList.add(novoVoziloDto);
+		}
+		
+		return resultList;
+	}
+
+	@Override
+	public VoziloDto createVozilo(VoziloDto vozilo) {
+		
+		VoziloDao novoVozilo = new VoziloDao();
+		novoVozilo.setId(vozilo.getId());
+		novoVozilo.setRegistracijskaOznaka(vozilo.getRegistracijskaOznaka());
+		
+		VoziloDao spremiVozilo = voziloRepositroy.save(novoVozilo);
+		
+		VoziloDto voziloDto = new VoziloDto();
+		voziloDto.setId(spremiVozilo.getId());
+		voziloDto.setRegistracijskaOznaka(spremiVozilo.getRegistracijskaOznaka());
+		
+		return voziloDto;
+	}
+
+	@Override
+	public VoziloDto updateVozilo(Integer id, VoziloDto vozilo) {
+		Optional<VoziloDao> vozilaIzBazeResult = Optional.of(voziloRepositroy.findById(id))
+				.orElseThrow(() -> new IllegalStateException("Vozilo with id " + id + "does not exist"));
+		
+		VoziloDao voziloIzBaze = vozilaIzBazeResult.get();
+		voziloIzBaze.setId(vozilo.getId());
+		voziloIzBaze.setRegistracijskaOznaka(vozilo.getRegistracijskaOznaka());
+		
+		VoziloDao spremiVozilo = voziloRepositroy.save(voziloIzBaze);
+		
+		VoziloDto voziloDto = new VoziloDto();
+		voziloDto.setId(spremiVozilo.getId());
+		voziloDto.setRegistracijskaOznaka(spremiVozilo.getRegistracijskaOznaka());
+		
+		return voziloDto;
+	}
+
+	@Override
+	public void deleteVozilo(Integer id) {
+		if (voziloRepositroy.getById(id).getId().equals(id)) {
+			boolean exist = voziloRepositroy.existsById(id);
+			
+			if(!exist) {
+				throw new IllegalStateException("Vozilo with id " + id + "does not exist");
+			}
+			
+			voziloRepositroy.deleteById(id);
+		}
+	}
+}

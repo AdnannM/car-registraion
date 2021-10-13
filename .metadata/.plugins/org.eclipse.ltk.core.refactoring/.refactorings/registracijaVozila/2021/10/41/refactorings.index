@@ -9,3 +9,18 @@
 1633941952552	Delete element
 1633944000281	Delete element
 1633949057803	Rename type 'RegistrovanoNaOsobuDTO'
+1634110469485	Move package
+1634110491254	Copy package
+1634110500491	Delete element
+1634110519162	Move package
+1634110527939	Move package
+1634110534718	Move package
+1634110541714	Move package
+1634110559385	Move compilation unit
+1634110565991	Delete element
+1634110612053	Rename package 'controller'
+1634110627490	Rename package 'dao'
+1634110648032	Rename package 'dto'
+1634110668348	Rename package 'repository'
+1634110681584	Rename package 'response'
+1634110696553	Rename package 'service'
