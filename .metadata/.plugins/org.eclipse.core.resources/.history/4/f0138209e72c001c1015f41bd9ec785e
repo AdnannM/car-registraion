@@ -1,0 +1,41 @@
+package com.api.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.api.dto.ModelVozilaDto;
+import com.api.service.ModelVozilaService;
+
+import io.swagger.annotations.ApiResponses;
+
+@Controller
+@RequestMapping("/api")
+
+@ApiResponses(value = {
+		
+		@io.swagger.annotations.ApiResponse(code = 400,
+											message = "This is a bad request, please follow the API documentation for the proper request format"),
+		@io.swagger.annotations.ApiResponse(code = 401,
+											message = "Doe to security your access request cannot be authorized"),
+		@io.swagger.annotations.ApiResponse(code = 500,
+											message = "The server is down.")	
+	}	
+)
+public class ModelVozilaController {
+
+	
+	@Autowired
+	ModelVozilaService modelVozilaService;
+	
+	@GetMapping("/model/vozila")
+	public ResponseEntity<List<ModelVozilaDto>> sviModeliVozila() {
+		List<ModelVozilaDto> modelVozila = modelVozilaService.sviModeliVozila();
+		return new ResponseEntity<>(modelVozila, HttpStatus.OK);
+	}
+}

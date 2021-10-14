@@ -30,3 +30,5 @@
 1634207757572	Extract method 'updateVoziloRepo'
 1634207783853	Extract method 'updateRigistrovanuOsobuRepo'
 1634207843300	Extract method 'getRegisterPerson'
+1634208702479	Extract method 'deletVoziloIzBaze'
+1634208722785	Extract method 'deleteOsobuIzBaze'

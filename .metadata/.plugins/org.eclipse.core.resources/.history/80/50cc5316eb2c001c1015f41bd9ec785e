@@ -1,0 +1,28 @@
+package com.api.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.api.service.KarakteristikeVozilaService;
+
+import io.swagger.annotations.ApiResponses;
+
+@Controller
+@RequestMapping("/api")
+
+@ApiResponses(value = {
+		
+		@io.swagger.annotations.ApiResponse(code = 400,
+											message = "This is a bad request, please follow the API documentation for the proper request format"),
+		@io.swagger.annotations.ApiResponse(code = 401,
+											message = "Doe to security your access request cannot be authorized"),
+		@io.swagger.annotations.ApiResponse(code = 500,
+											message = "The server is down.")	
+	}	
+)
+public class KarakteristikeVozilaController {
+	
+	@Autowired
+	KarakteristikeVozilaService karakteristikeVozilaService;
+}
