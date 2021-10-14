@@ -48,4 +48,8 @@
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="com.api.repository.RegistrovanoNaOsobuRepository"/>
     <fullyQualifiedTypeName name="com.api.dto.RegistrovanoNaOsobuDto"/>
+    <fullyQualifiedTypeName name="com.api.dao.RegistrovanoNaOsobuDao"/>
+    <fullyQualifiedTypeName name="org.hibernate.annotations.Cascade"/>
+    <fullyQualifiedTypeName name="javax.persistence.FetchType"/>
+    <fullyQualifiedTypeName name="javax.persistence.CascadeType"/>
 </qualifiedTypeNameHistroy>

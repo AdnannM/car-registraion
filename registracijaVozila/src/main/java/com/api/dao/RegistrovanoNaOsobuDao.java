@@ -3,8 +3,10 @@ package com.api.dao;
 import java.sql.Date;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,7 +44,7 @@ public class RegistrovanoNaOsobuDao {
 	@Column(name = "grad")
 	private String grad;
 	
-	@OneToOne(mappedBy = "registrovano")
+	@OneToOne(mappedBy = "registrovano", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	private VoziloDao voziloDao;
 	
 	public RegistrovanoNaOsobuDao() {

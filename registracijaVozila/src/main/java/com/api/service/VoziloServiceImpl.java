@@ -46,7 +46,7 @@ public class VoziloServiceImpl implements VoziloService {
 				  dtoRegistrovano.setId(voziloDao.getRegistrovano().getId());
 				  dtoRegistrovano.setIme(voziloDao.getRegistrovano().getIme());
 				  dtoRegistrovano.setPrezime(voziloDao.getRegistrovano().getPrezime());
-				  dtoRegistrovano.setGrad(voziloDao.getRegistrovano().getPrezime());
+				  dtoRegistrovano.setGrad(voziloDao.getRegistrovano().getGrad());
 				  dtoRegistrovano.setJmbg(voziloDao.getRegistrovano().getJmbg());
 				  dtoRegistrovano.setDatumRodjenja(voziloDao.getRegistrovano().getDatumRodjenja());
 				  novoVoziloDto.setRegistrovanoNaOsobuDto(dtoRegistrovano);
@@ -57,32 +57,43 @@ public class VoziloServiceImpl implements VoziloService {
 		
 		return resultList;
 	}
+	
 
 	@Override
 	public VoziloDto createVozilo(VoziloDto vozilo) {
 		
+		//upis
 		VoziloDao novoVozilo = new VoziloDao();
 		novoVozilo.setRegistracijskaOznaka(vozilo.getRegistracijskaOznaka());
 		
 		RegistrovanoNaOsobuDto regNaOsobuDto = vozilo.getRegistrovanoNaOsobuDto();
 		
-		Optional<RegistrovanoNaOsobuDao> regNaOsobuResult = Optional.of(registrovanoNaOsobuRepository.findById(regNaOsobuDto.getId()))
-				.orElseThrow(() -> new IllegalStateException("Register Person with id " + regNaOsobuDto + "does not exist"));
 		
-		novoVozilo.setRegistrovano(regNaOsobuResult.get());
+		if(regNaOsobuDto != null) {
+			RegistrovanoNaOsobuDao regNaOsobuDao = new RegistrovanoNaOsobuDao();
+			regNaOsobuDao.setIme(vozilo.getRegistrovanoNaOsobuDto().getIme());
+			regNaOsobuDao.setPrezime(vozilo.getRegistrovanoNaOsobuDto().getPrezime());
+			regNaOsobuDao.setGrad(vozilo.getRegistrovanoNaOsobuDto().getGrad());
+			regNaOsobuDao.setJmbg(vozilo.getRegistrovanoNaOsobuDto().getJmbg());
+			regNaOsobuDao.setDatumRodjenja(vozilo.getRegistrovanoNaOsobuDto().getDatumRodjenja());
+			
+			novoVozilo.setRegistrovano(regNaOsobuDao);
+		}
 		
 		VoziloDao spremiVozilo = voziloRepositroy.save(novoVozilo);
 		
+		//ispis
 		VoziloDto voziloDto = createVozilo(spremiVozilo);
 		
 		if(spremiVozilo.getRegistrovano() != null) {
 			RegistrovanoNaOsobuDto registovanoNaOsobuDto = new RegistrovanoNaOsobuDto();
-			regNaOsobuDto.setId(vozilo.getRegistrovanoNaOsobuDto().getId());
-			regNaOsobuDto.setIme(vozilo.getRegistrovanoNaOsobuDto().getIme());
-			regNaOsobuDto.setPrezime(vozilo.getRegistrovanoNaOsobuDto().getPrezime());
-			regNaOsobuDto.setGrad(vozilo.getRegistrovanoNaOsobuDto().getGrad());
-			regNaOsobuDto.setJmbg(vozilo.getRegistrovanoNaOsobuDto().getJmbg());
-			regNaOsobuDto.setDatumRodjenja(vozilo.getRegistrovanoNaOsobuDto().getDatumRodjenja());
+			RegistrovanoNaOsobuDao novaRegOsobaDao = spremiVozilo.getRegistrovano();
+			registovanoNaOsobuDto.setId(novaRegOsobaDao.getId());
+			registovanoNaOsobuDto.setIme(novaRegOsobaDao.getIme());
+			registovanoNaOsobuDto.setPrezime(novaRegOsobaDao.getPrezime());
+			registovanoNaOsobuDto.setGrad(novaRegOsobaDao.getGrad());
+			registovanoNaOsobuDto.setJmbg(novaRegOsobaDao.getJmbg());
+			registovanoNaOsobuDto.setDatumRodjenja(novaRegOsobaDao.getDatumRodjenja());
 			
 			voziloDto.setRegistrovanoNaOsobuDto(registovanoNaOsobuDto);
 		}
@@ -113,10 +124,29 @@ public class VoziloServiceImpl implements VoziloService {
 		voziloIzBaze.setRegistracijskaOznaka(vozilo.getRegistracijskaOznaka());
 		
 		// RegistrovanoNaOsobu update
+		RegistrovanoNaOsobuDto regNaOsobuDto = vozilo.getRegistrovanoNaOsobuDto();
+		
+		Optional<RegistrovanoNaOsobuDao> regOsobeIzBazeResult = Optional.of(registrovanoNaOsobuRepository.findById(id))
+				.orElseThrow(() -> new IllegalStateException("Register Person with id " + id + "does not exist"));
+		
+		RegistrovanoNaOsobuDao regOsobaIzBaze = regOsobeIzBazeResult.get();
+		
+		voziloIzBaze.setRegistrovano(regOsobaIzBaze);
 		
 		VoziloDao spremiVozilo = voziloRepositroy.save(voziloIzBaze);
 		
 		VoziloDto voziloDto = createVozilo(spremiVozilo);
+		
+		if(vozilo.getRegistrovanoNaOsobuDto() != null) {
+			regNaOsobuDto.setId(spremiVozilo.getRegistrovano().getId());
+			regNaOsobuDto.setIme(spremiVozilo.getRegistrovano().getIme());
+			regNaOsobuDto.setPrezime(spremiVozilo.getRegistrovano().getPrezime());
+			regNaOsobuDto.setGrad(spremiVozilo.getRegistrovano().getGrad());
+			regNaOsobuDto.setJmbg(spremiVozilo.getRegistrovano().getJmbg());
+			regNaOsobuDto.setDatumRodjenja(spremiVozilo.getRegistrovano().getDatumRodjenja());
+			
+			voziloDto.setRegistrovanoNaOsobuDto(regNaOsobuDto);
+		}
 		
 		return voziloDto;
 	}

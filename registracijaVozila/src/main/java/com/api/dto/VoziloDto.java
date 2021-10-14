@@ -1,6 +1,7 @@
 package com.api.dto;
 
 
+
 public class VoziloDto {
 
 	private Integer id;
@@ -12,8 +13,8 @@ public class VoziloDto {
 	public RegistrovanoNaOsobuDto getRegistrovanoNaOsobuDto() {
 		return registrovanoNaOsobuDto;
 	}
-	public void setRegistrovanoNaOsobuDto(RegistrovanoNaOsobuDto registrovanoNaOsobuDto) {
-		this.registrovanoNaOsobuDto = registrovanoNaOsobuDto;
+	public void setRegistrovanoNaOsobuDto(RegistrovanoNaOsobuDto registovanoNaOsobuDto) {
+		this.registrovanoNaOsobuDto = registovanoNaOsobuDto;
 	}
 	public Integer getId() {
 		return id;
