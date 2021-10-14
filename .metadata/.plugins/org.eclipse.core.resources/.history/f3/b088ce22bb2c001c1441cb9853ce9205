@@ -112,8 +112,6 @@ public class VoziloServiceImpl implements VoziloService {
 		voziloIzBaze.setId(vozilo.getId());
 		voziloIzBaze.setRegistracijskaOznaka(vozilo.getRegistracijskaOznaka());
 		
-		// RegistrovanoNaOsobu update
-		
 		VoziloDao spremiVozilo = voziloRepositroy.save(voziloIzBaze);
 		
 		VoziloDto voziloDto = createVozilo(spremiVozilo);
@@ -133,7 +131,7 @@ public class VoziloServiceImpl implements VoziloService {
 			voziloRepositroy.deleteById(id);
 		}
 		
-		if(registrovanoNaOsobuRepository.getById(id) != null) {
+		if(registrovanoNaOsobuRepository.getById(id).equals(id)) {
 			boolean exist = registrovanoNaOsobuRepository.existsById(id);
 			
 			if(!exist) {

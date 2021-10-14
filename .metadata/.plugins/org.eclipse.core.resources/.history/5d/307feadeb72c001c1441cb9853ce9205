@@ -62,6 +62,7 @@ public class VoziloServiceImpl implements VoziloService {
 	public VoziloDto createVozilo(VoziloDto vozilo) {
 		
 		VoziloDao novoVozilo = new VoziloDao();
+		novoVozilo.setId(vozilo.getId());
 		novoVozilo.setRegistracijskaOznaka(vozilo.getRegistracijskaOznaka());
 		
 		RegistrovanoNaOsobuDto regNaOsobuDto = vozilo.getRegistrovanoNaOsobuDto();
@@ -73,29 +74,6 @@ public class VoziloServiceImpl implements VoziloService {
 		
 		VoziloDao spremiVozilo = voziloRepositroy.save(novoVozilo);
 		
-		VoziloDto voziloDto = createVozilo(spremiVozilo);
-		
-		if(spremiVozilo.getRegistrovano() != null) {
-			RegistrovanoNaOsobuDto registovanoNaOsobuDto = new RegistrovanoNaOsobuDto();
-			regNaOsobuDto.setId(vozilo.getRegistrovanoNaOsobuDto().getId());
-			regNaOsobuDto.setIme(vozilo.getRegistrovanoNaOsobuDto().getIme());
-			regNaOsobuDto.setPrezime(vozilo.getRegistrovanoNaOsobuDto().getPrezime());
-			regNaOsobuDto.setGrad(vozilo.getRegistrovanoNaOsobuDto().getGrad());
-			regNaOsobuDto.setJmbg(vozilo.getRegistrovanoNaOsobuDto().getJmbg());
-			regNaOsobuDto.setDatumRodjenja(vozilo.getRegistrovanoNaOsobuDto().getDatumRodjenja());
-			
-			voziloDto.setRegistrovanoNaOsobuDto(registovanoNaOsobuDto);
-		}
-		
-		
-		return voziloDto;
-	}
-	
-	/*
-	 * - MARK: 
-	 * 	- CreateVozilo
-	 */
-	private VoziloDto createVozilo(VoziloDao spremiVozilo) {
 		VoziloDto voziloDto = new VoziloDto();
 		voziloDto.setId(spremiVozilo.getId());
 		voziloDto.setRegistracijskaOznaka(spremiVozilo.getRegistracijskaOznaka());
@@ -112,11 +90,11 @@ public class VoziloServiceImpl implements VoziloService {
 		voziloIzBaze.setId(vozilo.getId());
 		voziloIzBaze.setRegistracijskaOznaka(vozilo.getRegistracijskaOznaka());
 		
-		// RegistrovanoNaOsobu update
-		
 		VoziloDao spremiVozilo = voziloRepositroy.save(voziloIzBaze);
 		
-		VoziloDto voziloDto = createVozilo(spremiVozilo);
+		VoziloDto voziloDto = new VoziloDto();
+		voziloDto.setId(spremiVozilo.getId());
+		voziloDto.setRegistracijskaOznaka(spremiVozilo.getRegistracijskaOznaka());
 		
 		return voziloDto;
 	}
@@ -131,14 +109,6 @@ public class VoziloServiceImpl implements VoziloService {
 			}
 			
 			voziloRepositroy.deleteById(id);
-		}
-		
-		if(registrovanoNaOsobuRepository.getById(id) != null) {
-			boolean exist = registrovanoNaOsobuRepository.existsById(id);
-			
-			if(!exist) {
-				throw new IllegalStateException("Register Person with id  " + id + "does not Exist");
-			}
 		}
 	}
 }
