@@ -26,9 +26,6 @@ public class VoziloServiceImpl implements VoziloService {
 	RegistrovanoNaOsobuRepository registrovanoNaOsobuRepository;
 	
 	@Override
-	/*
-	 * - MARK: - GET
-	 */
 	public List<VoziloDto> sveVozila() {
 		
 		List<VoziloDao> empListDb = voziloRepositroy.findAll();
@@ -38,13 +35,6 @@ public class VoziloServiceImpl implements VoziloService {
 			return resultList;
 		}
 		
-		getAllFromList(empListDb, resultList);
-		
-		return resultList;
-	}
-
-
-	private void getAllFromList(List<VoziloDao> empListDb, List<VoziloDto> resultList) {
 		for (VoziloDao voziloDao : empListDb) {
 			VoziloDto novoVoziloDto = new VoziloDto();
 			novoVoziloDto.setId(voziloDao.getId());
@@ -64,34 +54,18 @@ public class VoziloServiceImpl implements VoziloService {
 			
 			resultList.add(novoVoziloDto);
 		}
+		
+		return resultList;
 	}
 	
 
 	@Override
-	/*
-	 * - MARK: - POST
-	 */
 	public VoziloDto createVozilo(VoziloDto vozilo) {
 		
 		//upis
 		VoziloDao novoVozilo = new VoziloDao();
 		novoVozilo.setRegistracijskaOznaka(vozilo.getRegistracijskaOznaka());
 		
-		upisNapravljenihVozila(vozilo, novoVozilo);
-		
-		VoziloDao spremiVozilo = voziloRepositroy.save(novoVozilo);
-		
-		//ispis
-		VoziloDto voziloDto = createVozilo(spremiVozilo);
-		
-		registrujNovuOsobu(spremiVozilo, voziloDto);
-		
-		
-		return voziloDto;
-	}
-
-
-	private void upisNapravljenihVozila(VoziloDto vozilo, VoziloDao novoVozilo) {
 		RegistrovanoNaOsobuDto regNaOsobuDto = vozilo.getRegistrovanoNaOsobuDto();
 		
 		
@@ -105,10 +79,34 @@ public class VoziloServiceImpl implements VoziloService {
 			
 			novoVozilo.setRegistrovano(regNaOsobuDao);
 		}
+		
+		VoziloDao spremiVozilo = voziloRepositroy.save(novoVozilo);
+		
+		//ispis
+		VoziloDto voziloDto = createVozilo(spremiVozilo);
+		
+		if(spremiVozilo.getRegistrovano() != null) {
+			
+			RegistrovanoNaOsobuDto registovanoNaOsobuDto = new RegistrovanoNaOsobuDto();
+			RegistrovanoNaOsobuDao novaRegOsobaDao = spremiVozilo.getRegistrovano();
+			registovanoNaOsobuDto.setId(novaRegOsobaDao.getId());
+			registovanoNaOsobuDto.setIme(novaRegOsobaDao.getIme());
+			registovanoNaOsobuDto.setPrezime(novaRegOsobaDao.getPrezime());
+			registovanoNaOsobuDto.setGrad(novaRegOsobaDao.getGrad());
+			registovanoNaOsobuDto.setJmbg(novaRegOsobaDao.getJmbg());
+			registovanoNaOsobuDto.setDatumRodjenja(novaRegOsobaDao.getDatumRodjenja());
+			
+			voziloDto.setRegistrovanoNaOsobuDto(registovanoNaOsobuDto);
+		}
+		
+		
+		return voziloDto;
 	}
-
-
-
+	
+	public void registovanoNaOsobuDto RegistrovanoNaOsobuDto() {
+		
+	}
+	
 	/*
 	 * - MARK: 
 	 * 	- CreateVozilo method
@@ -120,7 +118,7 @@ public class VoziloServiceImpl implements VoziloService {
 		
 		return voziloDto;
 	}
-	
+
 	@Override
 	public VoziloDto updateVozilo(Integer id, VoziloDto vozilo) {
 		Optional<VoziloDao> vozilaIzBazeResult = Optional.of(voziloRepositroy.findById(id))
@@ -164,26 +162,6 @@ public class VoziloServiceImpl implements VoziloService {
 		}
 		
 		return voziloDto;
-	}
-	
-
-	/*
-	 * - MARK: Register New Person
-	 */
-	private void registrujNovuOsobu(VoziloDao spremiVozilo, VoziloDto voziloDto) {
-		if(spremiVozilo.getRegistrovano() != null) {
-			
-			RegistrovanoNaOsobuDto registovanoNaOsobuDto = new RegistrovanoNaOsobuDto();
-			RegistrovanoNaOsobuDao novaRegOsobaDao = spremiVozilo.getRegistrovano();
-			registovanoNaOsobuDto.setId(novaRegOsobaDao.getId());
-			registovanoNaOsobuDto.setIme(novaRegOsobaDao.getIme());
-			registovanoNaOsobuDto.setPrezime(novaRegOsobaDao.getPrezime());
-			registovanoNaOsobuDto.setGrad(novaRegOsobaDao.getGrad());
-			registovanoNaOsobuDto.setJmbg(novaRegOsobaDao.getJmbg());
-			registovanoNaOsobuDto.setDatumRodjenja(novaRegOsobaDao.getDatumRodjenja());
-
-			voziloDto.setRegistrovanoNaOsobuDto(registovanoNaOsobuDto);
-		}
 	}
 
 	@Override
