@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.dao.ModelVozilaDao;
-
+import com.api.dto.KarakteristikeVozilaDto;
 import com.api.dto.ModelVozilaDto;
 import com.api.repository.ModelVozilaRepository;
 
@@ -39,7 +39,22 @@ public class ModelVozilaServiceImpl implements ModelVozilaService {
 			modelVozilaDto.setGodina(modelVozilaDao.getGodina());
 			modelVozilaDto.setProizdvodjac(modelVozilaDao.getProizdvodjac());
 			
-			modelVozilaResult.add(modelVozilaDto);		}
+			modelVozilaResult.add(modelVozilaDto);
+			
+			if(modelVozilaDao.getKarakteristikeVozilaDao()!= null) {
+				KarakteristikeVozilaDto karakteristikeVozilaDto = new KarakteristikeVozilaDto();
+				karakteristikeVozilaDto.setId(modelVozilaDao.getKarakteristikeVozilaDao().getId());
+				karakteristikeVozilaDto.setBoja(modelVozilaDao.getKarakteristikeVozilaDao().getBoja());
+				karakteristikeVozilaDto.setBrojSasije(modelVozilaDao.getKarakteristikeVozilaDao().getBrojSasije());
+				karakteristikeVozilaDto.setSnagaMotora(modelVozilaDao.getKarakteristikeVozilaDao().getSnagaMotora());
+				karakteristikeVozilaDto.setTipVozila(modelVozilaDao.getKarakteristikeVozilaDao().getTipVozila());
+				
+				modelVozilaDto.setKarakteristikeVozilaDto(karakteristikeVozilaDto);
+			}
+			
+			modelVozilaResult.add(modelVozilaDto);
+			
+		}
 		
 		return modelVozilaResult;
 	}

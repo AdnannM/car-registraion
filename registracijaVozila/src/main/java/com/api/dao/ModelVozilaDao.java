@@ -2,8 +2,10 @@ package com.api.dao;
 
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,20 +33,19 @@ public class ModelVozilaDao {
 	@Column(name = "proizdvodjac")
 	private String proizdvodjac;
 	
-	// Add Karakteristike Vozila
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "karakteristikeVozilaId", referencedColumnName = "id")
-	private KarakteristikeVozilaDao karakteristikeVozilaDao;
+	private KarakteristikeVozilaDao karakteristikeVozila;
 	
 	
 	
 	public KarakteristikeVozilaDao getKarakteristikeVozilaDao() {
-		return karakteristikeVozilaDao;
+		return karakteristikeVozila;
 	}
 
 	public void setKarakteristikeVozilaDao(KarakteristikeVozilaDao karakteristikeVozilaDao) {
-		this.karakteristikeVozilaDao = karakteristikeVozilaDao;
+		this.karakteristikeVozila = karakteristikeVozilaDao;
 	}
 
 	public ModelVozilaDao() {

@@ -7,7 +7,14 @@ public class ModelVozilaDto {
 	private Integer godina;
 	private String proizdvodjac;
 	
+	KarakteristikeVozilaDto karakteristikeVozilaDto;
 	
+	public KarakteristikeVozilaDto getKarakteristikeVozilaDto() {
+		return karakteristikeVozilaDto;
+	}
+	public void setKarakteristikeVozilaDto(KarakteristikeVozilaDto karakteristikeVozilaDto) {
+		this.karakteristikeVozilaDto = karakteristikeVozilaDto;
+	}
 	public Integer getId() {
 		return id;
 	}
