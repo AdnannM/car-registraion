@@ -11,7 +11,7 @@ public interface ModelVozilaService {
 
 	ModelVozilaDto createModelVozila(ModelVozilaDto modelVozila);
 
-	ModelVozilaDto updateModelVozila(Integer id, ModelVozilaDto vozilo);
+	ModelVozilaDto updateModelVozila(Integer id, ModelVozilaDto voziloModel);
 
 	void deleteModelVozila(Integer id);
 }
