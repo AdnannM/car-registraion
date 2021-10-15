@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.api.dao.KarakteristikeVozilaDao;
 import com.api.dao.ModelVozilaDao;
 import com.api.dto.KarakteristikeVozilaDto;
 import com.api.dto.ModelVozilaDto;
@@ -74,14 +75,41 @@ public class ModelVozilaServiceImpl implements ModelVozilaService {
 		noviModelVozila.setGodina(modelVozila.getGodina());
 		noviModelVozila.setModel(modelVozila.getModel());
 		noviModelVozila.setProizdvodjac(modelVozila.getModel());
+
+		KarakteristikeVozilaDto karakteristikeVozilaDto = modelVozila.getKarakteristikeVozilaDto();
+		
+		if(karakteristikeVozilaDto!= null) {
+			KarakteristikeVozilaDao karakteristikeVozilaDao = new KarakteristikeVozilaDao();
+			karakteristikeVozilaDao.setId(karakteristikeVozilaDto.getId());
+			karakteristikeVozilaDao.setBoja(karakteristikeVozilaDto.getBoja());
+			karakteristikeVozilaDao.setBrojSasije(karakteristikeVozilaDto.getBrojSasije());
+			karakteristikeVozilaDao.setSnagaMotora(karakteristikeVozilaDto.getSnagaMotora());
+			karakteristikeVozilaDao.setTipVozila(karakteristikeVozilaDto.getTipVozila());
+			noviModelVozila.setKarakteristikeVozilaDao(karakteristikeVozilaDao);
+		}
+
 		
 		ModelVozilaDao saveNoviModel = modelVozilaRepository.save(noviModelVozila);
-		
 		ModelVozilaDto modelVozilaDto = new ModelVozilaDto();
 		modelVozilaDto.setId(saveNoviModel.getId());
 		modelVozilaDto.setGodina(saveNoviModel.getGodina());
 		modelVozilaDto.setModel(noviModelVozila.getModel());
 		modelVozilaDto.setProizdvodjac(noviModelVozila.getProizdvodjac());
+		
+		
+		KarakteristikeVozilaDao novakarakteristikeVozilaDao = saveNoviModel.getKarakteristikeVozilaDao();
+		
+		if(novakarakteristikeVozilaDao!= null) {
+			KarakteristikeVozilaDto novakarakteristikeVozilaDto = new KarakteristikeVozilaDto();
+			novakarakteristikeVozilaDto.setId(novakarakteristikeVozilaDao.getId());
+			novakarakteristikeVozilaDto.setBoja(novakarakteristikeVozilaDao.getBoja());
+			novakarakteristikeVozilaDto.setBrojSasije(novakarakteristikeVozilaDao.getBrojSasije());
+			novakarakteristikeVozilaDto.setSnagaMotora(novakarakteristikeVozilaDao.getSnagaMotora());
+			novakarakteristikeVozilaDto.setTipVozila(novakarakteristikeVozilaDao.getTipVozila());
+			
+			modelVozilaDto.setKarakteristikeVozilaDto(novakarakteristikeVozilaDto);
+			
+		}
 		
 		return modelVozilaDto;
 	}
