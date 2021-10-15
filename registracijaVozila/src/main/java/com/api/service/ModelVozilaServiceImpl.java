@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.api.dao.KarakteristikeVozilaDao;
 import com.api.dao.ModelVozilaDao;
+import com.api.dao.VoziloDao;
 import com.api.dto.KarakteristikeVozilaDto;
 import com.api.dto.ModelVozilaDto;
 import com.api.repository.KarakteristikeVozilaRepository;
@@ -132,11 +133,36 @@ public class ModelVozilaServiceImpl implements ModelVozilaService {
 		
 		ModelVozilaDao saveNoviModel = modelVozilaRepository.save(noviModelIzBaze);
 		
+		Optional<KarakteristikeVozilaDao> karakteristikeVozilaIzBazeResult = Optional.of(karakteristikeVozilaRepository.findById(id))
+				.orElseThrow(() -> new IllegalStateException("Vozilo with id " + id + "does not exist"));
+		
+		KarakteristikeVozilaDao karakteristikeIzBaze = karakteristikeVozilaIzBazeResult.get();
+		
+		karakteristikeIzBaze.setBoja(voziloModel.getKarakteristikeVozilaDto().getBoja());
+		karakteristikeIzBaze.setBrojSasije(voziloModel.getKarakteristikeVozilaDto().getBrojSasije());
+		karakteristikeIzBaze.setSnagaMotora(voziloModel.getKarakteristikeVozilaDto().getSnagaMotora());
+		karakteristikeIzBaze.setTipVozila(voziloModel.getKarakteristikeVozilaDto().getTipVozila());
+		
+		noviModelIzBaze.setKarakteristikeVozilaDao(karakteristikeIzBaze);
+		
+	
+		
 		ModelVozilaDto noviModelDto = new ModelVozilaDto();
 		noviModelDto.setId(saveNoviModel.getId());
 		noviModelDto.setGodina(saveNoviModel.getGodina());
 		noviModelDto.setModel(saveNoviModel.getModel());
 		noviModelDto.setProizdvodjac(saveNoviModel.getProizdvodjac());
+		
+		if(voziloModel.getKarakteristikeVozilaDto() != null) {
+			KarakteristikeVozilaDto karakteristikeVozilaDto = new KarakteristikeVozilaDto();
+			karakteristikeVozilaDto.setId(voziloModel.getKarakteristikeVozilaDto().getId());
+			karakteristikeVozilaDto.setBoja(voziloModel.getKarakteristikeVozilaDto().getBoja());
+			karakteristikeVozilaDto.setBrojSasije(voziloModel.getKarakteristikeVozilaDto().getBrojSasije());
+			karakteristikeVozilaDto.setSnagaMotora(voziloModel.getKarakteristikeVozilaDto().getSnagaMotora());
+			karakteristikeVozilaDto.setTipVozila(voziloModel.getKarakteristikeVozilaDto().getTipVozila());
+			
+			noviModelDto.setKarakteristikeVozilaDto(karakteristikeVozilaDto);
+		}
 		
 		return noviModelDto;
 	}
