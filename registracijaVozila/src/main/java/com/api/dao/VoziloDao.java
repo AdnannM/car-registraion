@@ -30,12 +30,30 @@ public class VoziloDao {
 	
 	@OneToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "registrovanoId", referencedColumnName = "id", updatable = false)
-	private RegistrovanoNaOsobuDao registrovano; 
+	private RegistrovanoNaOsobuDao registrovano;
+	
+	
+	@OneToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "modelId", referencedColumnName = "id", updatable = false)
+	private ModelVozilaDao modelVozila;
 	
 
 	public VoziloDao() {
 		
 	}
+
+	
+
+	public ModelVozilaDao getModelVozila() {
+		return modelVozila;
+	}
+
+
+
+	public void setModelVozila(ModelVozilaDao modelVozila) {
+		this.modelVozila = modelVozila;
+	}
+
 
 
 	public Integer getId() {

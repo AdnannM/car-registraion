@@ -8,10 +8,15 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.api.dao.ModelVozilaDao;
 import com.api.dao.RegistrovanoNaOsobuDao;
 import com.api.dao.VoziloDao;
+import com.api.dto.KarakteristikeVozilaDto;
+import com.api.dto.ModelVozilaDto;
 import com.api.dto.RegistrovanoNaOsobuDto;
 import com.api.dto.VoziloDto;
+import com.api.repository.KarakteristikeVozilaRepository;
+import com.api.repository.ModelVozilaRepository;
 import com.api.repository.RegistrovanoNaOsobuRepository;
 import com.api.repository.VoziloRepository;
 
@@ -25,10 +30,21 @@ public class VoziloServiceImpl implements VoziloService {
 	@Autowired
 	RegistrovanoNaOsobuRepository registrovanoNaOsobuRepository;
 	
+	@Autowired
+	ModelVozilaRepository modelVozilaRepositorty;
+	
+	@Autowired
+	KarakteristikeVozilaRepository karakteristikeVozilaRepository;
+	
 	@Override
 	/*
 	 * - MARK: - GET
 	 */
+	
+
+//	private void getAllFromList(List<VoziloDao> empListDb, List<VoziloDto> resultList) {
+//		
+//	}
 	public List<VoziloDto> sveVozila() {
 		
 		List<VoziloDao> empListDb = voziloRepositroy.findAll();
@@ -38,13 +54,6 @@ public class VoziloServiceImpl implements VoziloService {
 			return resultList;
 		}
 		
-		getAllFromList(empListDb, resultList);
-		
-		return resultList;
-	}
-
-
-	private void getAllFromList(List<VoziloDao> empListDb, List<VoziloDto> resultList) {
 		for (VoziloDao voziloDao : empListDb) {
 			VoziloDto novoVoziloDto = new VoziloDto();
 			novoVoziloDto.setId(voziloDao.getId());
@@ -62,9 +71,46 @@ public class VoziloServiceImpl implements VoziloService {
 				  novoVoziloDto.setRegistrovanoNaOsobuDto(dtoRegistrovano);
 			}
 			
+			
+			
+			List<ModelVozilaDao> modelListDb = modelVozilaRepositorty.findAll();
+			List<ModelVozilaDto> modelVozilaResultList = new ArrayList<ModelVozilaDto>();
+			
+			
+			for (ModelVozilaDao modelVozilaDao : modelListDb) {
+				ModelVozilaDto modelVozilaDto = new ModelVozilaDto();
+				modelVozilaDto.setId(modelVozilaDao.getId());
+				modelVozilaDto.setGodina(modelVozilaDao.getGodina());
+				modelVozilaDto.setModel(modelVozilaDao.getModel());
+				modelVozilaDto.setProizdvodjac(modelVozilaDao.getProizdvodjac());
+				modelVozilaResultList.add(modelVozilaDto);
+				
+				if(modelVozilaDao.getModel()!=null) {
+					ModelVozilaDto modelDto = new ModelVozilaDto();
+					modelDto.setGodina(modelVozilaDao.getGodina());
+					modelDto.setProizdvodjac(modelVozilaDao.getProizdvodjac());
+					modelDto.setId(modelVozilaDao.getId());
+					novoVoziloDto.setModelVozilaDto(modelVozilaDto);
+				}
+				
+				if(modelVozilaDao.getKarakteristikeVozilaDao()!=null) {
+					KarakteristikeVozilaDto karakteristikeDto = new KarakteristikeVozilaDto();
+					karakteristikeDto.setBoja(modelVozilaDao.getKarakteristikeVozilaDao().getBoja());
+					karakteristikeDto.setBrojSasije(modelVozilaDao.getKarakteristikeVozilaDao().getBrojSasije());
+					karakteristikeDto.setSnagaMotora(modelVozilaDao.getKarakteristikeVozilaDao().getSnagaMotora());
+					karakteristikeDto.setId(modelVozilaDao.getKarakteristikeVozilaDao().getId());
+					karakteristikeDto.setTipVozila(modelVozilaDao.getKarakteristikeVozilaDao().getTipVozila());
+					novoVoziloDto.setKarakteristikeVozila(karakteristikeDto);
+				}
+			}
+			
 			resultList.add(novoVoziloDto);
 		}
+		
+		return resultList;
 	}
+
+
 	
 
 	@Override

@@ -37,7 +37,8 @@ public class ModelVozilaDao {
     @JoinColumn(name = "karakteristikeVozilaId", referencedColumnName = "id")
 	private KarakteristikeVozilaDao karakteristikeVozila;
 	
-	
+	@OneToOne(mappedBy = "modelVozila", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	private VoziloDao voziloDao;
 	
 	public KarakteristikeVozilaDao getKarakteristikeVozilaDao() {
 		return karakteristikeVozila;

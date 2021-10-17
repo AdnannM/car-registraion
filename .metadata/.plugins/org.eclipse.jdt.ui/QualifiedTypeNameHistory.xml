@@ -49,15 +49,15 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
     <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="com.api.dto.ModelVozilaDto"/>
     <fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
     <fullyQualifiedTypeName name="com.api.service.KarakteristikeVozilaService"/>
-    <fullyQualifiedTypeName name="com.api.dto.KarakteristikeVozilaDto"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
-    <fullyQualifiedTypeName name="com.api.repository.ModelVozilaRepository"/>
-    <fullyQualifiedTypeName name="com.api.dao.ModelVozilaDao"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.api.dto.KarakteristikeVozilaDto"/>
     <fullyQualifiedTypeName name="com.api.repository.KarakteristikeVozilaRepository"/>
     <fullyQualifiedTypeName name="com.api.dao.KarakteristikeVozilaDao"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.api.repository.ModelVozilaRepository"/>
+    <fullyQualifiedTypeName name="com.api.dao.ModelVozilaDao"/>
+    <fullyQualifiedTypeName name="com.api.dto.ModelVozilaDto"/>
 </qualifiedTypeNameHistroy>

@@ -9,7 +9,23 @@ public class VoziloDto {
 	
 	RegistrovanoNaOsobuDto registrovanoNaOsobuDto;
 	
+	ModelVozilaDto modelVozilaDto;
 	
+	KarakteristikeVozilaDto karakteristikeVozila;
+	
+	
+	public KarakteristikeVozilaDto getKarakteristikeVozila() {
+		return karakteristikeVozila;
+	}
+	public void setKarakteristikeVozila(KarakteristikeVozilaDto karakteristikeVozila) {
+		this.karakteristikeVozila = karakteristikeVozila;
+	}
+	public ModelVozilaDto getModelVozilaDto() {
+		return modelVozilaDto;
+	}
+	public void setModelVozilaDto(ModelVozilaDto modelVozilaDto) {
+		this.modelVozilaDto = modelVozilaDto;
+	}
 	public RegistrovanoNaOsobuDto getRegistrovanoNaOsobuDto() {
 		return registrovanoNaOsobuDto;
 	}
