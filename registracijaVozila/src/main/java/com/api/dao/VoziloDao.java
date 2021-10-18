@@ -37,23 +37,14 @@ public class VoziloDao {
     @JoinColumn(name = "modelId", referencedColumnName = "id", updatable = false)
 	private ModelVozilaDao modelVozila;
 	
+	@OneToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "registracijaId", referencedColumnName = "id", updatable = false)
+	private RegistracijaDao registracija;
+	
 
 	public VoziloDao() {
 		
 	}
-
-	
-
-	public ModelVozilaDao getModelVozila() {
-		return modelVozila;
-	}
-
-
-
-	public void setModelVozila(ModelVozilaDao modelVozila) {
-		this.modelVozila = modelVozila;
-	}
-
 
 
 	public Integer getId() {
@@ -86,16 +77,36 @@ public class VoziloDao {
 	}
 
 
+	public ModelVozilaDao getModelVozila() {
+		return modelVozila;
+	}
+
+
+	public void setModelVozila(ModelVozilaDao modelVozila) {
+		this.modelVozila = modelVozila;
+	}
+
+	
+
+	public void setRegistracija(RegistracijaDao registracija) {
+		this.registracija = registracija;
+	}
+
+	public RegistracijaDao getRegistracija() {
+		return registracija;
+	}
+
+
 	@Override
 	public String toString() {
 		return "VoziloDao [id=" + id + ", registracijskaOznaka=" + registracijskaOznaka + ", registrovano="
-				+ registrovano + "]";
+				+ registrovano + ", modelVozila=" + modelVozila + ", registracija=" + registracija + "]";
 	}
 
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, registracijskaOznaka, registrovano);
+		return Objects.hash(id, modelVozila, registracija, registracijskaOznaka, registrovano);
 	}
 
 
@@ -108,7 +119,9 @@ public class VoziloDao {
 		if (getClass() != obj.getClass())
 			return false;
 		VoziloDao other = (VoziloDao) obj;
-		return Objects.equals(id, other.id) && Objects.equals(registracijskaOznaka, other.registracijskaOznaka)
+		return Objects.equals(id, other.id) && Objects.equals(modelVozila, other.modelVozila)
+				&& Objects.equals(registracija, other.registracija)
+				&& Objects.equals(registracijskaOznaka, other.registracijskaOznaka)
 				&& Objects.equals(registrovano, other.registrovano);
 	}
 }

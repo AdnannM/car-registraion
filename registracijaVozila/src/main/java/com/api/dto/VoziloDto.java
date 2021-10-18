@@ -13,6 +13,16 @@ public class VoziloDto {
 	
 	KarakteristikeVozilaDto karakteristikeVozila;
 	
+	RegistracijaDto registracija;
+	
+	
+	public void setRegistracija(RegistracijaDto registracija) {
+		this.registracija = registracija;
+	}
+	
+	public RegistracijaDto getRegistracija() {
+		return registracija;
+	}
 	
 	public KarakteristikeVozilaDto getKarakteristikeVozila() {
 		return karakteristikeVozila;

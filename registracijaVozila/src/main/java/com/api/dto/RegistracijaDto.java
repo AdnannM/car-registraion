@@ -9,7 +9,17 @@ public class RegistracijaDto {
 	private Date trajanjeRegistracijeDo;
 	private Boolean isteklaRegistracija;
 	
+	VoziloDto voziloDto;
 	
+	
+	public void setVoziloDto(VoziloDto voziloDto) {
+		this.voziloDto = voziloDto;
+	}
+	
+	public VoziloDto getVoziloDto() {
+		return voziloDto;
+	}
+
 	public Integer getId() {
 		return id;
 	}

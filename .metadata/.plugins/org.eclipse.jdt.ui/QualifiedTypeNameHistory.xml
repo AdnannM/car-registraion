@@ -54,10 +54,10 @@
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="com.api.dto.KarakteristikeVozilaDto"/>
-    <fullyQualifiedTypeName name="com.api.repository.KarakteristikeVozilaRepository"/>
-    <fullyQualifiedTypeName name="com.api.dao.KarakteristikeVozilaDao"/>
     <fullyQualifiedTypeName name="com.api.repository.ModelVozilaRepository"/>
     <fullyQualifiedTypeName name="com.api.dao.ModelVozilaDao"/>
     <fullyQualifiedTypeName name="com.api.dto.ModelVozilaDto"/>
+    <fullyQualifiedTypeName name="com.api.repository.KarakteristikeVozilaRepository"/>
+    <fullyQualifiedTypeName name="com.api.dao.KarakteristikeVozilaDao"/>
+    <fullyQualifiedTypeName name="com.api.dto.KarakteristikeVozilaDto"/>
 </qualifiedTypeNameHistroy>

@@ -9,14 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.dao.ModelVozilaDao;
+import com.api.dao.RegistracijaDao;
 import com.api.dao.RegistrovanoNaOsobuDao;
 import com.api.dao.VoziloDao;
 import com.api.dto.KarakteristikeVozilaDto;
 import com.api.dto.ModelVozilaDto;
+import com.api.dto.RegistracijaDto;
 import com.api.dto.RegistrovanoNaOsobuDto;
 import com.api.dto.VoziloDto;
 import com.api.repository.KarakteristikeVozilaRepository;
 import com.api.repository.ModelVozilaRepository;
+import com.api.repository.RegistracijaRepository;
 import com.api.repository.RegistrovanoNaOsobuRepository;
 import com.api.repository.VoziloRepository;
 
@@ -35,6 +38,9 @@ public class VoziloServiceImpl implements VoziloService {
 	
 	@Autowired
 	KarakteristikeVozilaRepository karakteristikeVozilaRepository;
+	
+	@Autowired
+	RegistracijaRepository registracijaRepository;
 	
 	@Override
 	/*
@@ -72,7 +78,6 @@ public class VoziloServiceImpl implements VoziloService {
 			}
 			
 			
-			
 			List<ModelVozilaDao> modelListDb = modelVozilaRepositorty.findAll();
 			List<ModelVozilaDto> modelVozilaResultList = new ArrayList<ModelVozilaDto>();
 			
@@ -101,6 +106,28 @@ public class VoziloServiceImpl implements VoziloService {
 					karakteristikeDto.setId(modelVozilaDao.getKarakteristikeVozilaDao().getId());
 					karakteristikeDto.setTipVozila(modelVozilaDao.getKarakteristikeVozilaDao().getTipVozila());
 					novoVoziloDto.setKarakteristikeVozila(karakteristikeDto);
+				}
+			}
+			
+			
+			List<RegistracijaDao> registracijaListDb = registracijaRepository.findAll();
+			List<RegistracijaDto> registracijaResultList = new ArrayList<RegistracijaDto>();
+			
+			for (RegistracijaDao registracijaDao : registracijaListDb) {
+				RegistracijaDto registracijaDto = new RegistracijaDto();
+				registracijaDto.setId(registracijaDao.getId());
+				registracijaDto.setIsteklaRegistracija(registracijaDao.getIsteklaRegistracija());
+				registracijaDto.setTrajanjeRegistracijeOd(registracijaDao.getTrajanjeRegistracijeOd());
+				registracijaDto.setTrajanjeRegistracijeDo(registracijaDao.getTrajanjeRegistracijeDo());
+				registracijaResultList.add(registracijaDto);
+				
+				if(registracijaDao.getRegistracija()!=null) {
+					RegistracijaDto dtoRegistracija = new RegistracijaDto();
+					dtoRegistracija.setId(voziloDao.getRegistracija().getId());
+					dtoRegistracija.setIsteklaRegistracija(voziloDao.getRegistracija().getIsteklaRegistracija());
+					dtoRegistracija.setTrajanjeRegistracijeOd(voziloDao.getRegistracija().getTrajanjeRegistracijeOd());
+					dtoRegistracija.setTrajanjeRegistracijeDo(voziloDao.getRegistracija().getTrajanjeRegistracijeDo());
+					novoVoziloDto.setRegistracija(dtoRegistracija);
 				}
 			}
 			
