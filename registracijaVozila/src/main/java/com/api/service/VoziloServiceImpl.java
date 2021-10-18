@@ -121,7 +121,7 @@ public class VoziloServiceImpl implements VoziloService {
 				registracijaDto.setTrajanjeRegistracijeDo(registracijaDao.getTrajanjeRegistracijeDo());
 				registracijaResultList.add(registracijaDto);
 				
-				if(registracijaDao.getRegistracija()!=null) {
+				if(voziloDao.getRegistracija()!=null) {
 					RegistracijaDto dtoRegistracija = new RegistracijaDto();
 					dtoRegistracija.setId(voziloDao.getRegistracija().getId());
 					dtoRegistracija.setIsteklaRegistracija(voziloDao.getRegistracija().getIsteklaRegistracija());

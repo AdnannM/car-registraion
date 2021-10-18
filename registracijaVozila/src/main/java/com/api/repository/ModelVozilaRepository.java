@@ -1,5 +1,6 @@
 package com.api.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,5 +15,9 @@ public interface ModelVozilaRepository extends JpaRepository <ModelVozilaDao, In
 
 	@Query(value = "select * from modelVozilaDao where modelVozilaDao = :modelVozila", nativeQuery = true)
 	 Optional<ModelVozilaDao> getRegOsobu(String modelVozila);
-	// Find model Querry?
+	
+	
+	
+	 Optional <List<ModelVozilaDao>> findByModel(String model);
+	 Optional <List<ModelVozilaDao>> findByProizdvodjac(String proizdvodjac);
 }

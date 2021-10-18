@@ -1,5 +1,6 @@
 package com.api.service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -104,5 +105,15 @@ public class RegistrovanoNaOsobuServiceImpl implements RegistrovanoNaOsobuServic
 			
 			registrovanoNaOsobuRepository.deleteById(id);
 		}
+	}
+
+	@Override
+	public RegistrovanoNaOsobuDto checkAge(Date godine) {
+		return null;
+	}
+
+	@Override
+	public Optional<RegistrovanoNaOsobuDto> findByJmbg(Long jmbg) {
+		return registrovanoNaOsobuRepository.findByJmbg(jmbg);
 	}
 }

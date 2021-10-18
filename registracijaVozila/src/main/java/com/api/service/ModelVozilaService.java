@@ -1,7 +1,9 @@
 package com.api.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import com.api.dao.ModelVozilaDao;
 import com.api.dto.ModelVozilaDto;
 
 
@@ -13,5 +15,9 @@ public interface ModelVozilaService {
 
 	ModelVozilaDto updateModelVozila(Integer id, ModelVozilaDto voziloModel);
 
+	
+	 Optional <List<ModelVozilaDao>> findByModel(String model);
+	 Optional <List<ModelVozilaDao>> findByProizdvodjac(String proizdvodjac);
+	
 	void deleteModelVozila(Integer id);
 }

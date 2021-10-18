@@ -192,4 +192,14 @@ public class ModelVozilaServiceImpl implements ModelVozilaService {
 			karakteristikeVozilaRepository.deleteById(id);
 		}
 	}
+
+	@Override
+	public Optional<List<ModelVozilaDao>> findByModel(String model) {
+		return modelVozilaRepository.findByModel(model);
+	}
+
+	@Override
+	public Optional<List<ModelVozilaDao>> findByProizdvodjac(String proizdvodjac) {
+		return modelVozilaRepository.findByProizvodjac(proizdvodjac);
+	}
 }
