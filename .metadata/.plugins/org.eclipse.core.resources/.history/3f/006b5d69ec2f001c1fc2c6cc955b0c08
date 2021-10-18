@@ -200,6 +200,6 @@ public class ModelVozilaServiceImpl implements ModelVozilaService {
 
 	@Override
 	public Optional<List<ModelVozilaDao>> findByProizdvodjac(String proizdvodjac) {
-		return modelVozilaRepository.findByProizdvodjac(proizdvodjac);
+		return modelVozilaRepository.findByProizvodjac(proizdvodjac);
 	}
 }
