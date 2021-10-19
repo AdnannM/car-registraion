@@ -323,8 +323,6 @@ public class VoziloServiceImpl implements VoziloService {
 		
 		deleteRegistracijuIzBaze(id);
 		
-		deleteModelIzBaze(id);
-		
 	}
 
 	private void deleteOsobuIzBaze(Integer id) {

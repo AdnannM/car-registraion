@@ -323,8 +323,6 @@ public class VoziloServiceImpl implements VoziloService {
 		
 		deleteRegistracijuIzBaze(id);
 		
-		deleteModelIzBaze(id);
-		
 	}
 
 	private void deleteOsobuIzBaze(Integer id) {
@@ -372,18 +370,6 @@ public class VoziloServiceImpl implements VoziloService {
 			}
 				
 			registracijaRepository.deleteById(id);
-		}
-	}
-	
-	private void deleteModelIzBaze(Integer id) {
-		if (modelVozilaRepositorty.getById(id).getId().equals(id)) {
-			boolean exist = modelVozilaRepositorty.existsById(id);
-				
-			if(!exist) {
-				throw new IllegalStateException("Model with id " + id + "does not exist");
-			}
-				
-			modelVozilaRepositorty.deleteById(id);
 		}
 	}
 

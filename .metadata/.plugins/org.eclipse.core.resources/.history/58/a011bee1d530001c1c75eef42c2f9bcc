@@ -318,13 +318,6 @@ public class VoziloServiceImpl implements VoziloService {
 		deletVoziloIzBaze(id);
 		
 		deleteOsobuIzBaze(id);
-		
-		deletKarakteristikeIzBaze(id);
-		
-		deleteRegistracijuIzBaze(id);
-		
-		deleteModelIzBaze(id);
-		
 	}
 
 	private void deleteOsobuIzBaze(Integer id) {
@@ -349,41 +342,6 @@ public class VoziloServiceImpl implements VoziloService {
 			}
 			
 			voziloRepositroy.deleteById(id);
-		}
-	}
-	private void deletKarakteristikeIzBaze(Integer id) {
-		if (karakteristikeVozilaRepository.getById(id).getId().equals(id)) {
-			boolean exist = karakteristikeVozilaRepository.existsById(id);
-				
-			if(!exist) {
-				throw new IllegalStateException("Karakteristike with id " + id + "does not exist");
-			}
-				
-			karakteristikeVozilaRepository.deleteById(id);
-		}
-	}
-	
-	private void deleteRegistracijuIzBaze(Integer id) {
-		if (registracijaRepository.getById(id).getId().equals(id)) {
-			boolean exist = registracijaRepository.existsById(id);
-				
-			if(!exist) {
-				throw new IllegalStateException("Registracija with id " + id + "does not exist");
-			}
-				
-			registracijaRepository.deleteById(id);
-		}
-	}
-	
-	private void deleteModelIzBaze(Integer id) {
-		if (modelVozilaRepositorty.getById(id).getId().equals(id)) {
-			boolean exist = modelVozilaRepositorty.existsById(id);
-				
-			if(!exist) {
-				throw new IllegalStateException("Model with id " + id + "does not exist");
-			}
-				
-			modelVozilaRepositorty.deleteById(id);
 		}
 	}
 
