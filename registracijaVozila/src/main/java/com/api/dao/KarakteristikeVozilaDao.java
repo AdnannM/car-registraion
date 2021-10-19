@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "karakteristikeVozila")
@@ -23,6 +24,7 @@ public class KarakteristikeVozilaDao {
 	
 	@Column(name = "brojSasije",
 			unique = true)
+	@Size(min = 17, max = 17)
 	private Integer brojSasije;
 	
 	@Column(name = "boja")

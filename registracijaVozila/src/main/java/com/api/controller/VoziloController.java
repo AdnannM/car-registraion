@@ -48,14 +48,14 @@ public class VoziloController {
 	
 	@PostMapping("/registracija/add")
 	public ResponseEntity<VoziloDto> addVozilo(@RequestBody VoziloDto vozilo) {
-		VoziloDto novoVozilo = voziloService.createVozilo(vozilo);
-		return new ResponseEntity<VoziloDto>(novoVozilo, HttpStatus.CREATED);
+		List<VoziloDto> novoVozilo = voziloService.createVozilo(vozilo);
+		return new ResponseEntity<VoziloDto>((VoziloDto) novoVozilo, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/registracija/update{id}")
 	public ResponseEntity<VoziloDto> updateVozilo(@PathVariable Integer id, @RequestBody VoziloDto vozilo) {
-		VoziloDto ispraviVozilo = voziloService.updateVozilo(id,vozilo);
-		return new ResponseEntity<VoziloDto>(ispraviVozilo, HttpStatus.OK);
+		List<VoziloDto> ispraviVozilo = voziloService.updateVozilo(id,vozilo);
+		return new ResponseEntity<VoziloDto>((VoziloDto) ispraviVozilo,HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/registracija/delete{id}")

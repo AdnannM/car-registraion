@@ -150,7 +150,7 @@ public class VoziloServiceImpl implements VoziloService {
 	/*
 	 * - MARK: - POST
 	 */
-	public VoziloDto createVozilo(VoziloDto vozilo) {
+	public List<VoziloDto> createVozilo(VoziloDto vozilo) {
 		
 		//upis
 		VoziloDao novoVozilo = new VoziloDao();
@@ -173,7 +173,7 @@ public class VoziloServiceImpl implements VoziloService {
 		}
 		
 		//ispis
-		VoziloDto voziloDto = createVozilo(spremiVozilo);
+		List<VoziloDto> voziloDto = createVozilo(spremiVozilo);
 		
 		ModelVozilaDao noviModelDao = spremiVozilo.getModelVozila();
 		
@@ -183,7 +183,7 @@ public class VoziloServiceImpl implements VoziloService {
 			noviModelDto.setModel(noviModelDao.getModel());
 			noviModelDto.setProizdvodjac(noviModelDao.getProizdvodjac());
 			
-			voziloDto.setModelVozilaDto(modelDto);
+			((VoziloDto) voziloDto).setModelVozilaDto(modelDto);
 		}
 		
 		registrujNovuOsobu(spremiVozilo, voziloDto);
@@ -215,19 +215,20 @@ public class VoziloServiceImpl implements VoziloService {
 	 * - MARK: 
 	 * 	- CreateVozilo method
 	 */
-	private VoziloDto createVozilo(VoziloDao spremiVozilo) {
+	@SuppressWarnings("unchecked")
+	private List<VoziloDto> createVozilo(VoziloDao spremiVozilo) {
 		VoziloDto voziloDto = new VoziloDto();
 		voziloDto.setId(spremiVozilo.getId());
 		voziloDto.setRegistracijskaOznaka(spremiVozilo.getRegistracijskaOznaka());
 		
-		return voziloDto;
+		return ((List<VoziloDto>) voziloDto);
 	}
 	
 	@Override
 	/*
 	 * - MARK: PUT
 	 */
-	public VoziloDto updateVozilo(Integer id, VoziloDto vozilo) {
+	public List<VoziloDto> updateVozilo(Integer id, VoziloDto vozilo) {
 		
 		VoziloDao voziloIzBaze = updateVoziloRepo(id, vozilo);
 		
@@ -236,15 +237,15 @@ public class VoziloServiceImpl implements VoziloService {
 		
 		VoziloDao spremiVozilo = voziloRepositroy.save(voziloIzBaze);
 		
-		VoziloDto voziloDto = createVozilo(spremiVozilo);
+		List<VoziloDto> voziloDto = createVozilo(spremiVozilo);
 		
 		getRegisterPerson(vozilo, voziloDto);
 		
-		return voziloDto;
+		return (List<VoziloDto>) voziloDto;
 	}
 
 
-	private void getRegisterPerson(VoziloDto vozilo, VoziloDto voziloDto) {
+	private void getRegisterPerson(VoziloDto vozilo, List<VoziloDto> voziloDto) {
 		if(vozilo.getRegistrovanoNaOsobuDto() != null) {
 			
 			RegistrovanoNaOsobuDto regNaOsobuDto = new RegistrovanoNaOsobuDto();
@@ -255,7 +256,7 @@ public class VoziloServiceImpl implements VoziloService {
 			regNaOsobuDto.setJmbg(vozilo.getRegistrovanoNaOsobuDto().getJmbg());
 			regNaOsobuDto.setDatumRodjenja(vozilo.getRegistrovanoNaOsobuDto().getDatumRodjenja());
 			
-			voziloDto.setRegistrovanoNaOsobuDto(regNaOsobuDto);
+			((VoziloDto) voziloDto).setRegistrovanoNaOsobuDto(regNaOsobuDto);
 		}
 	}
 
@@ -291,7 +292,7 @@ public class VoziloServiceImpl implements VoziloService {
 	/*
 	 * - MARK: Register New Person
 	 */
-	private void registrujNovuOsobu(VoziloDao spremiVozilo, VoziloDto voziloDto) {
+	private void registrujNovuOsobu(VoziloDao spremiVozilo, List<VoziloDto> voziloDto) {
 		if(spremiVozilo.getRegistrovano() != null) {
 			
 			RegistrovanoNaOsobuDto registovanoNaOsobuDto = new RegistrovanoNaOsobuDto();
@@ -303,7 +304,7 @@ public class VoziloServiceImpl implements VoziloService {
 			registovanoNaOsobuDto.setJmbg(novaRegOsobaDao.getJmbg());
 			registovanoNaOsobuDto.setDatumRodjenja(novaRegOsobaDao.getDatumRodjenja());
 
-			voziloDto.setRegistrovanoNaOsobuDto(registovanoNaOsobuDto);
+			((VoziloDto) voziloDto).setRegistrovanoNaOsobuDto(registovanoNaOsobuDto);
 		}
 	}
 
@@ -389,6 +390,10 @@ public class VoziloServiceImpl implements VoziloService {
 
 
 
+	@Override
+	public List<RegistrovanoNaOsobuDao> findByRegistrovanoAll() {
+		return registrovanoNaOsobuRepository.findAll();
+	}
 	
 	/*
 	 * - FindBy Car
@@ -396,14 +401,38 @@ public class VoziloServiceImpl implements VoziloService {
 	
 	@Override
 	public Optional<ModelVozilaDao> findByModel(String model) {
-		// TODO Auto-generated method stub
-		return null;
+		if(model.isEmpty()) {
+			throw new IllegalStateException("Model " + model + " does not exist");
+		}
+		return modelVozilaRepositorty.findByModel(model);
 	}
 
 
 	@Override
-	public Optional<ModelVozilaDao> findByProizvodjac(String proizvodjac) {
-		// TODO Auto-generated method stub
-		return null;
+	public Optional<ModelVozilaDao> findByproizdvodjac(String proizdvodjac) {
+		if(proizdvodjac.isEmpty()) {
+			throw new IllegalStateException("Proizvodjac " + proizdvodjac + " does not exist");
+		}
+		return modelVozilaRepositorty.findByProizdvodjac(proizdvodjac);
+	}
+
+
+
+
+	@Override
+	public List<ModelVozilaDao> findByModelAll() {
+		
+		return modelVozilaRepositorty.findAll();
+	}
+
+	/*
+	 * - Registration
+	 */
+	@Override
+	public Optional<RegistracijaDao> findByRegistration(boolean isteklaRegistracija) {
+		if(isteklaRegistracija == false ) {
+			throw new IllegalStateException("Your registration is expired");
+		}
+		return registracijaRepository.findByRegistration(isteklaRegistracija);
 	}
 }

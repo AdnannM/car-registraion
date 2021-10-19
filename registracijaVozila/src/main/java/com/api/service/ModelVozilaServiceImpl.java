@@ -192,28 +192,4 @@ public class ModelVozilaServiceImpl implements ModelVozilaService {
 			karakteristikeVozilaRepository.deleteById(id);
 		}
 	}
-//
-//	@Override
-//	public Optional<List<ModelVozilaDao>> findByModel(String model) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public Optional<List<ModelVozilaDao>> findByProizdvodjac(String proizdvodjac) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
-//	@Override
-//	public Optional<List<ModelVozilaDao>> findByModel(String model) {
-//		// TODO Auto-generated method stub
-//		return modelVozilaRepository.findByModel(model);
-//	}
-//
-//	@Override
-//	public Optional<List<ModelVozilaDao>> findByProizdvodjac(String proizdvodjac) {
-//		// TODO Auto-generated method stub
-//		return modelVozilaRepository.findByProizdvodjac(proizdvodjac);
-//	}
 }

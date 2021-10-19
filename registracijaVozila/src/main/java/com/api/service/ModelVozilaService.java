@@ -12,10 +12,6 @@ public interface ModelVozilaService {
 	ModelVozilaDto createModelVozila(ModelVozilaDto modelVozila);
 
 	ModelVozilaDto updateModelVozila(Integer id, ModelVozilaDto voziloModel);
-
-	
-//	 Optional <List<ModelVozilaDao>> findByModel(String model);
-//	 Optional <List<ModelVozilaDao>> findByProizdvodjac(String proizdvodjac);
 	
 	void deleteModelVozila(Integer id);
 }
