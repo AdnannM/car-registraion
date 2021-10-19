@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -26,14 +28,16 @@ public class RegistrovanoNaOsobuDao {
 	
 	@Column(name = "ime",
 			unique = true)
-
+	@NotBlank(message = "Name can't be empty")
 	private String ime;
 	
+	@NotBlank(message = "Lastname can't be empty")
 	@Column(name = "prezime")
 	private String prezime;
 	
 	@Column(name = "jmbg",
 			unique = true)
+	@Size(min = 14, max = 14)
 	private long jmbg;
 	
 	@Column(name = "datumRodjenja")
@@ -42,6 +46,7 @@ public class RegistrovanoNaOsobuDao {
 	private Date datumRodjenja;
 	
 	@Column(name = "grad")
+	@NotBlank(message = "city can't be empty")
 	private String grad;
 	
 	@OneToOne(mappedBy = "registrovano", cascade=CascadeType.ALL, fetch = FetchType.EAGER)

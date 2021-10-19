@@ -315,4 +315,6 @@ public class VoziloServiceImpl implements VoziloService {
 			voziloRepositroy.deleteById(id);
 		}
 	}
+	
+	// Query
 }

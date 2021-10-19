@@ -15,10 +15,14 @@ import javax.persistence.Table;
 
 
 
+
 @Entity
 @Table(name = "vozilo")
 public class VoziloDao {
 
+
+
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
