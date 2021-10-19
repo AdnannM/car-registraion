@@ -403,13 +403,6 @@ public class VoziloServiceImpl implements VoziloService {
 		return voziloRepositroy.findByRegistracijskaOznaka(registracijskaOznaka);
 	}
 
-
-	@Override
-	public Optional<VoziloDao> getVozilo(String vozilo) {
-		
-		return voziloRepositroy.getVozilo(vozilo);
-	}
-
 	
 	/*
 	 * -- FindBy Person:
@@ -455,13 +448,6 @@ public class VoziloServiceImpl implements VoziloService {
 	}
 
 	
-
-	@Override
-	public Optional<RegistrovanoNaOsobuDto> getRegistrovano(String registrovano) {
-		// TODO Auto-generated method stub
-		return registrovanoNaOsobuRepository.getRegistrovano(registrovano);
-	}
-	
 	/*
 	 * - FindBy Model
 	 */
@@ -483,12 +469,6 @@ public class VoziloServiceImpl implements VoziloService {
 		}
 		return modelVozilaRepositorty.findByProizdvodjac(proizdvodjac);
 	}
-	
-	@Override
-	public Optional<ModelVozilaDao> getRegOsobu(String modelVozila) {
-		return modelVozilaRepositorty.getRegOsobu(modelVozila);
-	}
-
 
 	/*
 	 * - Registration
@@ -501,12 +481,6 @@ public class VoziloServiceImpl implements VoziloService {
 		return registracijaRepository.findByIsteklaRegistracija(isteklaRegistracija);
 	}
 
-
-	@Override
-	public Optional<RegistracijaDao> getRegistracija(String registracija) {
-		// TODO Auto-generated method stub
-		return registracijaRepository.getRegistracija(registracija);
-	}
 	
 	/*
 	 *  - Characteristics

@@ -30,7 +30,6 @@ public interface VoziloService {
 
 	Optional<VoziloDao> findById(Integer id);
 	Optional<VoziloDao> findByRegistracijskaOznaka(String registracijskaOznaka);
-	Optional<VoziloDao> getVozilo(String vozilo);
 	
 	/*
 	 * - Person

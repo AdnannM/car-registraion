@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.api.dao.VoziloDao;
-
+import com.api.dto.RegistrovanoNaOsobuDto;
 
 @Repository
 public interface VoziloRepository extends JpaRepository <VoziloDao, Integer> {

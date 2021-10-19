@@ -18,7 +18,5 @@ public interface KarakteristikeVozilaRepository extends JpaRepository <Karakteri
 
 	Optional<KarakteristikeVozilaDao> findByBrojSasije(Integer brojSasije);
 
-	Optional<KarakteristikeVozilaDao> findByBojaAndTipVozila(String boja, String tipVozila);
-
 
 }

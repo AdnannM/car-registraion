@@ -7,13 +7,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.api.dao.VoziloDao;
-
+import com.api.dto.RegistrovanoNaOsobuDto;
 
 @Repository
 public interface VoziloRepository extends JpaRepository <VoziloDao, Integer> {
 
 	@Query(value = "select * from voziloDao where voziloDao = :vozilo", nativeQuery = true)
-	 Optional<VoziloDao> getVozilo(String vozilo);
+	 Optional<RegistrovanoNaOsobuDto> getVozilo(String vozilo);
 	
 	Optional<VoziloDao> findByRegistracijskaOznaka(String registracijskaOznaka);
 	

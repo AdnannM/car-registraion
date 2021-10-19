@@ -406,8 +406,8 @@ public class VoziloServiceImpl implements VoziloService {
 
 	@Override
 	public Optional<VoziloDao> getVozilo(String vozilo) {
-		
-		return voziloRepositroy.getVozilo(vozilo);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

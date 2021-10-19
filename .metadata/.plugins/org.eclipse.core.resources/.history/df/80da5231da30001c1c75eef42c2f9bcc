@@ -403,13 +403,6 @@ public class VoziloServiceImpl implements VoziloService {
 		return voziloRepositroy.findByRegistracijskaOznaka(registracijskaOznaka);
 	}
 
-
-	@Override
-	public Optional<VoziloDao> getVozilo(String vozilo) {
-		
-		return voziloRepositroy.getVozilo(vozilo);
-	}
-
 	
 	/*
 	 * -- FindBy Person:
@@ -534,5 +527,8 @@ public class VoziloServiceImpl implements VoziloService {
 	public Optional<KarakteristikeVozilaDao> getKarakteristike(String karakteristikeVozila) {
 		return karakteristikeVozilaRepository.getKarakteristike(karakteristikeVozila);
 	}
+
+
+
 
 }
