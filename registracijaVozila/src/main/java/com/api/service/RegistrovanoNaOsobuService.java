@@ -2,7 +2,7 @@ package com.api.service;
 
 import java.sql.Date;
 import java.util.List;
-import java.util.Optional;
+
 
 import com.api.dto.RegistrovanoNaOsobuDto;
 
@@ -18,8 +18,6 @@ public interface RegistrovanoNaOsobuService {
 	
 	RegistrovanoNaOsobuDto checkAge(Date godine);
 	
-	Optional <RegistrovanoNaOsobuDto> findByJmbg(Long jmbg);
-
 	void deleteRegistrovanuOsobu(Integer id);
 
 }

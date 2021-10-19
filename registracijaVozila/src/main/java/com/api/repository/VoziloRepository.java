@@ -8,4 +8,6 @@ import com.api.dao.VoziloDao;
 @Repository
 public interface VoziloRepository extends JpaRepository <VoziloDao, Integer> {
 
+	
+	
 }

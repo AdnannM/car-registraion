@@ -13,7 +13,10 @@ import com.api.dto.RegistrovanoNaOsobuDto;
 	
 public interface RegistrovanoNaOsobuRepository extends JpaRepository <RegistrovanoNaOsobuDao, Integer> {
 	@Query(value = "select * from registrovanoNaOsobuDao where registrovanoNaOsobuDao = :registrovano", nativeQuery = true)
-	 Optional<RegistrovanoNaOsobuDao> getRegOsobu(String registrovano);
-
-	Optional<RegistrovanoNaOsobuDto> findByJmbg(Long jmbg);
+	 Optional<RegistrovanoNaOsobuDto> getRegOsobu(String registrovano);
+	
+	
+	Optional<RegistrovanoNaOsobuDao> findByJmbg(Long jmbg);
+	Optional<RegistrovanoNaOsobuDao> findByIme(String ime);
+	Optional<RegistrovanoNaOsobuDao> findByPrezime(String prezime);
 }

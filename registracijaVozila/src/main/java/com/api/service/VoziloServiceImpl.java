@@ -1,12 +1,17 @@
 package com.api.service;
 
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
+
 
 import com.api.dao.ModelVozilaDao;
 import com.api.dao.RegistracijaDao;
@@ -51,6 +56,7 @@ public class VoziloServiceImpl implements VoziloService {
 //	private void getAllFromList(List<VoziloDao> empListDb, List<VoziloDto> resultList) {
 //		
 //	}
+	
 	public List<VoziloDto> sveVozila() {
 		
 		List<VoziloDao> empListDb = voziloRepositroy.findAll();
@@ -154,8 +160,31 @@ public class VoziloServiceImpl implements VoziloService {
 		
 		VoziloDao spremiVozilo = voziloRepositroy.save(novoVozilo);
 		
+		// Model:
+		ModelVozilaDto modelDto = vozilo.getModelVozilaDto();
+		
+		if(modelDto != null) {
+			ModelVozilaDao modelDao = new ModelVozilaDao();
+			modelDao.setGodina(vozilo.getModelVozilaDto().getGodina());
+			modelDao.setModel(vozilo.getModelVozilaDto().getModel());
+			modelDao.setProizdvodjac(vozilo.getModelVozilaDto().getProizdvodjac());
+			
+			novoVozilo.setModelVozila(modelDao);
+		}
+		
 		//ispis
 		VoziloDto voziloDto = createVozilo(spremiVozilo);
+		
+		ModelVozilaDao noviModelDao = spremiVozilo.getModelVozila();
+		
+		if(noviModelDao != null) {
+			ModelVozilaDto noviModelDto = new ModelVozilaDto();
+			noviModelDto.setGodina(noviModelDao.getGodina());
+			noviModelDto.setModel(noviModelDao.getModel());
+			noviModelDto.setProizdvodjac(noviModelDao.getProizdvodjac());
+			
+			voziloDto.setModelVozilaDto(modelDto);
+		}
 		
 		registrujNovuOsobu(spremiVozilo, voziloDto);
 		
@@ -290,7 +319,6 @@ public class VoziloServiceImpl implements VoziloService {
 		deleteOsobuIzBaze(id);
 	}
 
-
 	private void deleteOsobuIzBaze(Integer id) {
 		if(registrovanoNaOsobuRepository.getById(id) != null) {
 			boolean exist = registrovanoNaOsobuRepository.existsById(id);
@@ -315,6 +343,67 @@ public class VoziloServiceImpl implements VoziloService {
 			voziloRepositroy.deleteById(id);
 		}
 	}
+
+	/*
+	 * -- FindBy Person:
+	 */
+
+	@Override
+	public Optional<RegistrovanoNaOsobuDao> checkAge(Date datumRodjenja) {
+		//LocalDate date = LocalDate.now();
+		if(datumRodjenja.compareTo(datumRodjenja) <= 18) {
+			throw new IllegalStateException("You must have 18 years to Register Car");
+		}
+		return checkAge(datumRodjenja);
+	}
+
+	@Override
+	public Optional<RegistrovanoNaOsobuDao> findByIme(String ime) {
+		if(ime.isEmpty()) {
+			throw new IllegalStateException("Name " + ime + "does not exist");
+		}
+		return registrovanoNaOsobuRepository.findByIme(ime);
+	}
+
+
+
+
+	@Override
+	public Optional<RegistrovanoNaOsobuDao> findByPrezime(String prezime) {
+		if(prezime.isEmpty()) {
+			throw new IllegalStateException("Lastname " + prezime + "does not exist");
+		}
+		return registrovanoNaOsobuRepository.findByPrezime(prezime);
+	}
+
+
+
+
+	@Override
+	public Optional<RegistrovanoNaOsobuDao> findByJmbg(long jmbg) {
+		if(Long.valueOf(jmbg) != null) {
+			throw new IllegalStateException("Jmbg " + jmbg + "does not exist");
+		}
+		return registrovanoNaOsobuRepository.findByJmbg(jmbg);
+	}
+
+
+
 	
-	// Query
+	/*
+	 * - FindBy Car
+	 */
+	
+	@Override
+	public Optional<ModelVozilaDao> findByModel(String model) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Optional<ModelVozilaDao> findByProizvodjac(String proizvodjac) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

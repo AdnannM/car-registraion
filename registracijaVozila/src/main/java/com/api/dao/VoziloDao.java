@@ -20,10 +20,6 @@ import javax.persistence.Table;
 @Table(name = "vozilo")
 public class VoziloDao {
 
-
-
-	
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")

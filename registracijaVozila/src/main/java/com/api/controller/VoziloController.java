@@ -2,7 +2,10 @@ package com.api.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.api.dao.RegistrovanoNaOsobuDao;
 import com.api.dto.VoziloDto;
 import com.api.service.VoziloService;
 
@@ -58,5 +62,12 @@ public class VoziloController {
 	public ResponseEntity<?>deleteVozilo(@PathVariable("id") Integer id) {
 		voziloService.deleteVozilo(id);
 		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	 @PostMapping("/registracija")
+	   public ResponseEntity<?> createRegisterPerson(@Valid @RequestBody RegistrovanoNaOsobuDao registrovanoNaOsobu){
+
+		 HttpHeaders responseHeader = new HttpHeaders();
+	       return new ResponseEntity<>(registrovanoNaOsobu, responseHeader, HttpStatus.CREATED);
 	}
 }

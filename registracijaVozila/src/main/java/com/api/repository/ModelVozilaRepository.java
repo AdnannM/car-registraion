@@ -1,6 +1,6 @@
 package com.api.repository;
 
-import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,14 +10,18 @@ import org.springframework.stereotype.Repository;
 import com.api.dao.ModelVozilaDao;
 
 
+
+
 @Repository
 public interface ModelVozilaRepository extends JpaRepository <ModelVozilaDao, Integer> {
 
 	@Query(value = "select * from modelVozilaDao where modelVozilaDao = :modelVozila", nativeQuery = true)
 	 Optional<ModelVozilaDao> getRegOsobu(String modelVozila);
 	
-	
-	
-	 Optional <List<ModelVozilaDao>> findByModel(String model);
-	 Optional <List<ModelVozilaDao>> findByProizdvodjac(String proizdvodjac);
+//	 Optional<ModelVozilaDto> getCarModel(String model);
+//	 Optional<ModelVozilaDto> getProizvodjac(String prozvodjac);
+
+//	Optional<List<ModelVozilaDao>> findByModel(String model);
+//
+//	Optional<List<ModelVozilaDao>> findByProizdvodjac(String proizdvodjac);
 }

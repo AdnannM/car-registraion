@@ -29,9 +29,10 @@ public class RegistrovanoNaOsobuDao {
 	@Column(name = "ime",
 			unique = true)
 	@NotBlank(message = "Name can't be empty")
+	@Size(min=2, max=30)
 	private String ime;
 	
-	@NotBlank(message = "Lastname can't be empty")
+	@NotBlank(message = "LastName can't be empty")
 	@Column(name = "prezime")
 	private String prezime;
 	
@@ -46,7 +47,7 @@ public class RegistrovanoNaOsobuDao {
 	private Date datumRodjenja;
 	
 	@Column(name = "grad")
-	@NotBlank(message = "city can't be empty")
+	@NotBlank(message = "City can't be empty")
 	private String grad;
 	
 	@OneToOne(mappedBy = "registrovano", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
@@ -136,7 +137,4 @@ public class RegistrovanoNaOsobuDao {
 				&& Objects.equals(id, other.id) && Objects.equals(ime, other.ime) && jmbg == other.jmbg
 				&& Objects.equals(prezime, other.prezime) && Objects.equals(voziloDao, other.voziloDao);
 	}
-	
-	
-	
 }

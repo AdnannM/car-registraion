@@ -112,8 +112,8 @@ public class RegistrovanoNaOsobuServiceImpl implements RegistrovanoNaOsobuServic
 		return null;
 	}
 
-	@Override
-	public Optional<RegistrovanoNaOsobuDto> findByJmbg(Long jmbg) {
-		return registrovanoNaOsobuRepository.findByJmbg(jmbg);
-	}
+//	@Override
+//	public Optional<RegistrovanoNaOsobuDto> findByJmbg(Long jmbg) {
+//		return registrovanoNaOsobuRepository.findByJmbg(jmbg);
+//	}
 }

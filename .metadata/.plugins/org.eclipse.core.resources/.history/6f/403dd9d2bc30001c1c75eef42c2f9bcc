@@ -1,0 +1,28 @@
+package com.api.service;
+
+import java.sql.Date;
+import java.util.List;
+import java.util.Optional;
+
+import com.api.dao.RegistrovanoNaOsobuDao;
+
+
+import com.api.dto.VoziloDto;
+
+
+
+public interface VoziloService {
+
+	List<VoziloDto> sveVozila();
+
+	VoziloDto createVozilo(VoziloDto vozilo);
+
+	VoziloDto updateVozilo(Integer id, VoziloDto vozilo);
+
+	void deleteVozilo(Integer id);
+
+  	
+	Optional<RegistrovanoNaOsobuDao> checkAge(Date datumRodjenja);
+	Optional<RegistrovanoNaOsobuDao> findByIme(String ime);
+	Optional<RegistrovanoNaOsobuDao> findByPrezime(String prezime);
+}
