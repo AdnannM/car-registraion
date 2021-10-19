@@ -19,6 +19,4 @@ public interface ModelVozilaRepository extends JpaRepository <ModelVozilaDao, In
 	 Optional<ModelVozilaDao> getRegOsobu(String modelVozila);
 
 	Optional<ModelVozilaDao> findByModel(String model);
-
-	Optional<ModelVozilaDao> findByProizvodjac(String proizvodjac);
 }
