@@ -1,2 +1,2 @@
 # car-registraion API
-Car Registration Spring Boot-Maven-MySQL
+Car Registration Java Spring Boot-Maven-MySQL
