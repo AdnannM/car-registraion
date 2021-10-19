@@ -1,5 +1,6 @@
 package com.api.repository;
 
+
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,4 +15,8 @@ public interface KarakteristikeVozilaRepository extends JpaRepository <Karakteri
 
 	@Query(value = "select * from karakteristikeVozilaDao where karakteristikeVozilaDao = :karakteristikeVozila", nativeQuery = true)
 	 Optional<KarakteristikeVozilaDao> getKarakteristike(String karakteristikeVozila);
+
+	Optional<KarakteristikeVozilaDao> findByBrojSasije(Integer brojSasije);
+
+
 }

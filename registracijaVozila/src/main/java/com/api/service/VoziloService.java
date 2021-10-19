@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
+import com.api.dao.KarakteristikeVozilaDao;
 import com.api.dao.ModelVozilaDao;
 import com.api.dao.RegistracijaDao;
 import com.api.dao.RegistrovanoNaOsobuDao;
@@ -30,17 +31,24 @@ public interface VoziloService {
 	Optional<RegistrovanoNaOsobuDao> findByIme(String ime);
 	Optional<RegistrovanoNaOsobuDao> findByPrezime(String prezime);
 	Optional<RegistrovanoNaOsobuDao> findByJmbg(long jmbg);
-	List<RegistrovanoNaOsobuDao> findByRegistrovanoAll();
+
 	
 	/*
 	 * - Car
 	 */
 	Optional<ModelVozilaDao> findByModel(String model);
 	Optional<ModelVozilaDao> findByproizdvodjac(String proizdvodjac);
-	List<ModelVozilaDao> findByModelAll();
 	
 	/*
 	 * - Registration
 	 */
 	Optional<RegistracijaDao> findByRegistration(boolean isteklaRegistracija);
+	
+	
+	/*
+	 * - Characteristics
+	 */
+	
+	Optional<KarakteristikeVozilaDao> findByBrojSasije(Integer brojSasije);
+	
 }

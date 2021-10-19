@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
-
+import com.api.dao.KarakteristikeVozilaDao;
 import com.api.dao.ModelVozilaDao;
 import com.api.dao.RegistracijaDao;
 import com.api.dao.RegistrovanoNaOsobuDao;
@@ -388,12 +388,6 @@ public class VoziloServiceImpl implements VoziloService {
 		return registrovanoNaOsobuRepository.findByJmbg(jmbg);
 	}
 
-
-
-	@Override
-	public List<RegistrovanoNaOsobuDao> findByRegistrovanoAll() {
-		return registrovanoNaOsobuRepository.findAll();
-	}
 	
 	/*
 	 * - FindBy Car
@@ -416,15 +410,6 @@ public class VoziloServiceImpl implements VoziloService {
 		return modelVozilaRepositorty.findByProizdvodjac(proizdvodjac);
 	}
 
-
-
-
-	@Override
-	public List<ModelVozilaDao> findByModelAll() {
-		
-		return modelVozilaRepositorty.findAll();
-	}
-
 	/*
 	 * - Registration
 	 */
@@ -433,6 +418,20 @@ public class VoziloServiceImpl implements VoziloService {
 		if(isteklaRegistracija == false ) {
 			throw new IllegalStateException("Your registration is expired");
 		}
-		return registracijaRepository.findByRegistration(isteklaRegistracija);
+		return registracijaRepository.findByIsteklaRegistracija(isteklaRegistracija);
 	}
+
+	
+	/*
+	 *  - Characteristics
+	 */
+	
+	@Override
+	public Optional<KarakteristikeVozilaDao> findByBrojSasije(Integer brojSasije) {
+		if(brojSasije != null) {
+			throw new IllegalStateException("Broj sasije " + brojSasije + "does not exist");
+		}
+		return karakteristikeVozilaRepository.findByBrojSasije(brojSasije);
+	}
+
 }

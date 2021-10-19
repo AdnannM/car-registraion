@@ -19,4 +19,5 @@ public interface RegistrovanoNaOsobuRepository extends JpaRepository <Registrova
 	Optional<RegistrovanoNaOsobuDao> findByJmbg(Long jmbg);
 	Optional<RegistrovanoNaOsobuDao> findByIme(String ime);
 	Optional<RegistrovanoNaOsobuDao> findByPrezime(String prezime);
+
 }

@@ -1,6 +1,7 @@
 package com.api.repository;
 
 
+
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,4 +22,5 @@ public interface ModelVozilaRepository extends JpaRepository <ModelVozilaDao, In
 	Optional<ModelVozilaDao> findByModel(String model);
 
 	Optional<ModelVozilaDao> findByProizdvodjac(String proizdvodjac);
+
 }

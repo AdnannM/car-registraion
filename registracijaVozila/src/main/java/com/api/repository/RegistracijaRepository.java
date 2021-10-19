@@ -1,5 +1,6 @@
 package com.api.repository;
 
+
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,6 +16,7 @@ public interface RegistracijaRepository extends JpaRepository<RegistracijaDao, I
 	@Query(value = "select * from registracijaDao where registracijaDao = :registracija", nativeQuery = true)
 	 Optional<RegistracijaDao> getRegOsobu(String registracija);
 
-	Optional<RegistracijaDao> findByRegistration(boolean isteklaRegistracija);
+	Optional<RegistracijaDao> findByIsteklaRegistracija(boolean isteklaRegistracija);
+
 	
 }
