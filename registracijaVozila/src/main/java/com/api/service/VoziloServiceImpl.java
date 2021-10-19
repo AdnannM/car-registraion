@@ -51,12 +51,7 @@ public class VoziloServiceImpl implements VoziloService {
 	/*
 	 * - MARK: - GET
 	 */
-	
 
-//	private void getAllFromList(List<VoziloDao> empListDb, List<VoziloDto> resultList) {
-//		
-//	}
-	
 	public List<VoziloDto> sveVozila() {
 		
 		List<VoziloDao> empListDb = voziloRepositroy.findAll();
@@ -386,7 +381,29 @@ public class VoziloServiceImpl implements VoziloService {
 			modelVozilaRepositorty.deleteById(id);
 		}
 	}
+	
+	/*
+	 *  - FindBy Car
+	 */
 
+	@Override
+	public Optional<VoziloDao> findById(Integer id) {
+		
+		return voziloRepositroy.findById(id);
+	}
+
+
+
+
+	@Override
+	public Optional<VoziloDao> findByRegistracijskaOznaka(String registracijskaOznaka) {
+		if(registracijskaOznaka.isEmpty()) {
+			throw new IllegalStateException("Register Mark " + registracijskaOznaka + " does't exist");
+		}
+		return voziloRepositroy.findByRegistracijskaOznaka(registracijskaOznaka);
+	}
+
+	
 	/*
 	 * -- FindBy Person:
 	 */
@@ -432,8 +449,9 @@ public class VoziloServiceImpl implements VoziloService {
 
 	
 	/*
-	 * - FindBy Car
+	 * - FindBy Model
 	 */
+
 	
 	@Override
 	public Optional<ModelVozilaDao> findByModel(String model) {

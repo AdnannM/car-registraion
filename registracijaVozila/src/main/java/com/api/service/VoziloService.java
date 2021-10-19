@@ -8,8 +8,7 @@ import com.api.dao.KarakteristikeVozilaDao;
 import com.api.dao.ModelVozilaDao;
 import com.api.dao.RegistracijaDao;
 import com.api.dao.RegistrovanoNaOsobuDao;
-
-
+import com.api.dao.VoziloDao;
 import com.api.dto.VoziloDto;
 
 
@@ -23,7 +22,14 @@ public interface VoziloService {
 	List<VoziloDto> createVozilo(VoziloDto vozilo);
 	List<VoziloDto> updateVozilo(Integer id, VoziloDto vozilo);
 	void deleteVozilo(Integer id);
+	
+	/*
+	 * - Car
+	 */
 
+	Optional<VoziloDao> findById(Integer id);
+	Optional<VoziloDao> findByRegistracijskaOznaka(String registracijskaOznaka);
+	
 	/*
 	 * - Person
 	 */
