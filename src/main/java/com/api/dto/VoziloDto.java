@@ -1,6 +1,6 @@
 package com.api.dto;
 
-
+import java.util.List;
 
 public class VoziloDto {
 
@@ -24,17 +24,18 @@ public class VoziloDto {
 		return registracija;
 	}
 	
-	public KarakteristikeVozilaDto getKarakteristikeVozila() {
-		return karakteristikeVozila;
-	}
 	public void setKarakteristikeVozila(KarakteristikeVozilaDto karakteristikeVozila) {
 		this.karakteristikeVozila = karakteristikeVozila;
 	}
-	public ModelVozilaDto getModelVozilaDto() {
+	public KarakteristikeVozilaDto getKarakteristikeVozila() {
+		return karakteristikeVozila;
+	}
+	
+	public  ModelVozilaDto getModelVozilaDto() {
 		return modelVozilaDto;
 	}
-	public void setModelVozilaDto(ModelVozilaDto modelVozilaDto) {
-		this.modelVozilaDto = modelVozilaDto;
+	public void setModelVozilaDto( ModelVozilaDto modelVozilaResultList) {
+		this.modelVozilaDto = modelVozilaResultList;
 	}
 	public RegistrovanoNaOsobuDto getRegistrovanoNaOsobuDto() {
 		return registrovanoNaOsobuDto;
