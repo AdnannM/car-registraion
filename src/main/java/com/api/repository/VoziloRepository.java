@@ -15,6 +15,6 @@ public interface VoziloRepository extends JpaRepository <VoziloDao, Integer> {
 	@Query(value = "select * from voziloDao where voziloDao = :vozilo", nativeQuery = true)
 	 Optional<VoziloDao> getVozilo(String vozilo);
 	
-	Optional<VoziloDao> findByRegistracijskaOznaka(String registracijskaOznaka);
+	 Optional<VoziloDao> findByRegistracijskaOznaka(String registracijskaOznaka);
 	
 }

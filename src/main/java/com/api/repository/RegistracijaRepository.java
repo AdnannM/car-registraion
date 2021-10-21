@@ -16,7 +16,7 @@ public interface RegistracijaRepository extends JpaRepository<RegistracijaDao, I
 	@Query(value = "select * from registracijaDao where registracijaDao = :registracija", nativeQuery = true)
 	 Optional<RegistracijaDao> getRegistracija(String registracija);
 
-	Optional<RegistracijaDao> findByIsteklaRegistracija(boolean isteklaRegistracija);
+	 Optional<RegistracijaDao> findByIsteklaRegistracija(boolean isteklaRegistracija);
 
 	
 }

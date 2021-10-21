@@ -61,7 +61,6 @@ public class VoziloServiceImpl implements VoziloService {
 			VoziloDto novoVoziloDto = new VoziloDto();
 			novoVoziloDto.setId(voziloDao.getId());
 			novoVoziloDto.setRegistracijskaOznaka(voziloDao.getRegistracijskaOznaka());
-			
 
 			if (voziloDao.getRegistrovano() != null) {
 				RegistrovanoNaOsobuDto dtoRegistrovano = new RegistrovanoNaOsobuDto();
@@ -74,55 +73,32 @@ public class VoziloServiceImpl implements VoziloService {
 				novoVoziloDto.setRegistrovanoNaOsobuDto(dtoRegistrovano);
 			}
 		
-			List<ModelVozilaDao> empList = modelVozilaRepositorty.findAll();
-			List<ModelVozilaDto> modelVozilaResult = new ArrayList<ModelVozilaDto>();
-			
-			
-			for (ModelVozilaDao modelVozilaDao : empList) {
-				ModelVozilaDto modelVozilaDto = new ModelVozilaDto();
-				modelVozilaDto.setId(modelVozilaDao.getId());
-				modelVozilaDto.setModel(modelVozilaDao.getModel());
-				modelVozilaDto.setGodina(modelVozilaDao.getGodina());
-				modelVozilaDto.setProizdvodjac(modelVozilaDao.getProizdvodjac());
-				
-				modelVozilaResult.add(modelVozilaDto);
-				
-				if(modelVozilaDao.getKarakteristikeVozilaDao()!= null) {
-					KarakteristikeVozilaDto karakteristikeVozilaDto = new KarakteristikeVozilaDto();
-					karakteristikeVozilaDto.setId(modelVozilaDao.getKarakteristikeVozilaDao().getId());
-					karakteristikeVozilaDto.setBoja(modelVozilaDao.getKarakteristikeVozilaDao().getBoja());
-					karakteristikeVozilaDto.setBrojSasije(modelVozilaDao.getKarakteristikeVozilaDao().getBrojSasije());
-					karakteristikeVozilaDto.setSnagaMotora(modelVozilaDao.getKarakteristikeVozilaDao().getSnagaMotora());
-					karakteristikeVozilaDto.setTipVozila(modelVozilaDao.getKarakteristikeVozilaDao().getTipVozila());
-					
-					modelVozilaDto.setKarakteristikeVozilaDto(karakteristikeVozilaDto);
-				}
-				
-				modelVozilaResult.add(modelVozilaDto);
-			
-			if(voziloDao.getModelVozila() != null) {
-				ModelVozilaDto dtoModel = new ModelVozilaDto();
-				dtoModel.setId(voziloDao.getModelVozila().getId());
-				dtoModel.setGodina(voziloDao.getModelVozila().getGodina());
-				dtoModel.setModel(voziloDao.getModelVozila().getModel());
-				dtoModel.setProizdvodjac(voziloDao.getModelVozila().getProizdvodjac());
-				novoVoziloDto.setModelVozilaDto(dtoModel);
-			}
-		}
-			
-//			List<ModelVozilaDao> listDb = modelVozilaRepositorty.findAll();
-//			
-//			for (ModelVozilaDao karakteristikeVozilaDao : listDb) {
-//				KarakteristikeVozilaDto dtoKarakteristikeDto = new KarakteristikeVozilaDto();
-//				dtoKarakteristikeDto.setBoja(karakteristikeVozilaDao.getKarakteristikeVozilaDao().getBoja());
-//				dtoKarakteristikeDto.setId(karakteristikeVozilaDao.getId());
-//				dtoKarakteristikeDto.setBrojSasije(karakteristikeVozilaDao.getKarakteristikeVozilaDao().getBrojSasije());
-//				dtoKarakteristikeDto.setSnagaMotora(karakteristikeVozilaDao.getKarakteristikeVozilaDao().getSnagaMotora());
-//				dtoKarakteristikeDto.setTipVozila(karakteristikeVozilaDao.getKarakteristikeVozilaDao().getTipVozila());
-//				novoVoziloDto.setKarakteristikeVozila(dtoKarakteristikeDto);
-//			}
+			if (voziloDao.getModelVozila() != null) {
+			ModelVozilaDto modelVozilaDto = new ModelVozilaDto();
+			modelVozilaDto.setId(voziloDao.getModelVozila() .getId());
+			modelVozilaDto.setModel(voziloDao.getModelVozila() .getModel());
+			modelVozilaDto.setGodina(voziloDao.getModelVozila() .getGodina());
+			modelVozilaDto.setProizdvodjac(voziloDao.getModelVozila() .getProizdvodjac());
 
-			if(voziloDao.getRegistracija() != null) {
+			if(voziloDao.getModelVozila().getKarakteristikeVozilaDao() != null) {
+			
+				KarakteristikeVozilaDto karakteristikeVozilaDto = new KarakteristikeVozilaDto();
+				karakteristikeVozilaDto.setId(voziloDao.getModelVozila().getKarakteristikeVozilaDao().getId());
+				karakteristikeVozilaDto.setBoja(voziloDao.getModelVozila().getKarakteristikeVozilaDao().getBoja());
+				karakteristikeVozilaDto.setBrojSasije(voziloDao.getModelVozila().getKarakteristikeVozilaDao().getBrojSasije());
+				karakteristikeVozilaDto.setSnagaMotora(voziloDao.getModelVozila().getKarakteristikeVozilaDao().getSnagaMotora());
+				karakteristikeVozilaDto.setTipVozila(voziloDao.getModelVozila().getKarakteristikeVozilaDao().getTipVozila());
+				
+				modelVozilaDto.setKarakteristikeVozilaDto(karakteristikeVozilaDto);
+				
+				
+			}
+			novoVoziloDto.setModelVozilaDto(modelVozilaDto);
+		
+			}
+		
+
+			if (voziloDao.getRegistracija() != null) {
 				RegistracijaDto dtoRegistracija = new RegistracijaDto();
 				dtoRegistracija.setId(voziloDao.getRegistracija().getId());
 				dtoRegistracija.setTrajanjeRegistracijeOd(voziloDao.getRegistracija().getTrajanjeRegistracijeOd());
@@ -130,74 +106,7 @@ public class VoziloServiceImpl implements VoziloService {
 				dtoRegistracija.setIsteklaRegistracija(voziloDao.getRegistracija().getIsteklaRegistracija());
 				novoVoziloDto.setRegistracija(dtoRegistracija);
 			}
-			
-//			List<ModelVozilaDao> modelListDb = modelVozilaRepositorty.findAll();
-//			List<ModelVozilaDto> modelVozilaResultList = new ArrayList<ModelVozilaDto>();
-//
-//			for (ModelVozilaDao modelVozilaDao : modelListDb) {
-//				ModelVozilaDto modelVozilaDto = new ModelVozilaDto();
-//				modelVozilaDto.setId(modelVozilaDao.getId());
-//				modelVozilaDto.setModel(modelVozilaDao.getModel());
-//				modelVozilaDto.setGodina(modelVozilaDao.getGodina());
-//				modelVozilaDto.setProizdvodjac(modelVozilaDao.getProizdvodjac());
-//				
-//				
-//				novoVoziloDto.setModelVozilaDto(modelVozilaDto);
-//			}
-//				
-			
-			
-			
-//				
-//			
-//				
-//				if (voziloDao.getModelVozila() != null) {
-//					ModelVozilaDto modelDto = new ModelVozilaDto();
-//					modelDto.setId(modelVozilaDao.getId());
-//					modelDto.setModel(modelVozilaDao.getModel());
-//					modelDto.setGodina(modelVozilaDao.getGodina());
-//					modelDto.setProizdvodjac(modelVozilaDao.getProizdvodjac());
-//					
-//				}
-//				
-//				novoVoziloDto.setModelVozilaDto(modelVozilaDto);
-				
-//				if(voziloDao.getRegistrovano() != null) {
-//					KarakteristikeVozilaDto karakteristikeVozilaDto = new KarakteristikeVozilaDto();
-//					karakteristikeVozilaDto.setId(modelVozilaDao.getId());
-//					karakteristikeVozilaDto.setBoja(modelVozilaDao.getKarakteristikeVozilaDao().getBoja());
-//					karakteristikeVozilaDto.setBrojSasije(modelVozilaDao.getKarakteristikeVozilaDao().getBrojSasije());
-//					karakteristikeVozilaDto.setSnagaMotora(modelVozilaDao.getKarakteristikeVozilaDao().getSnagaMotora());
-//					karakteristikeVozilaDto.setTipVozila(modelVozilaDao.getKarakteristikeVozilaDao().getTipVozila());
-//					novoVoziloDto.setKarakteristikeVozila(karakteristikeVozilaDto);
-//				}
-//			}
-//			
-//			List<RegistracijaDao> registracijaListDb = registracijaRepository.findAll();
-//			List<RegistracijaDto> registracijaResultList = new ArrayList<RegistracijaDto>();
-//
-//			for (RegistracijaDao registracijaDao : registracijaListDb) {
-//				RegistracijaDto registracijaDto = new RegistracijaDto();
-//				registracijaDto.setId(registracijaDao.getId());
-//				registracijaDto.setIsteklaRegistracija(registracijaDao.getIsteklaRegistracija());
-//				registracijaDto.setTrajanjeRegistracijeOd(registracijaDao.getTrajanjeRegistracijeOd());
-//				registracijaDto.setTrajanjeRegistracijeDo(registracijaDao.getTrajanjeRegistracijeDo());
-//				registracijaResultList.add(registracijaDto);
-//				
-//				
-//
-////				if (voziloDao.getRegistracija() != null) {
-////					RegistracijaDto dtoRegistracija = new RegistracijaDto();
-////					dtoRegistracija.setId(voziloDao.getRegistracija().getId());
-////					dtoRegistracija.setIsteklaRegistracija(voziloDao.getRegistracija().getIsteklaRegistracija());
-////					dtoRegistracija.setTrajanjeRegistracijeOd(voziloDao.getRegistracija().getTrajanjeRegistracijeOd());
-////					dtoRegistracija.setTrajanjeRegistracijeDo(voziloDao.getRegistracija().getTrajanjeRegistracijeDo());
-////					novoVoziloDto.setRegistracija(dtoRegistracija);
-////				}
-//			}
-			
-		
-	
+
 			resultList.add(novoVoziloDto);
 		}
 

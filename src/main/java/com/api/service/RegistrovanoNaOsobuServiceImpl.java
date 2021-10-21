@@ -111,9 +111,4 @@ public class RegistrovanoNaOsobuServiceImpl implements RegistrovanoNaOsobuServic
 	public RegistrovanoNaOsobuDto checkAge(Date godine) {
 		return null;
 	}
-
-//	@Override
-//	public Optional<RegistrovanoNaOsobuDto> findByJmbg(Long jmbg) {
-//		return registrovanoNaOsobuRepository.findByJmbg(jmbg);
-//	}
 }

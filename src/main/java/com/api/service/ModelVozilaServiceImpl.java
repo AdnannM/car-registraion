@@ -44,10 +44,9 @@ public class ModelVozilaServiceImpl implements ModelVozilaService {
 			modelVozilaDto.setModel(modelVozilaDao.getModel());
 			modelVozilaDto.setGodina(modelVozilaDao.getGodina());
 			modelVozilaDto.setProizdvodjac(modelVozilaDao.getProizdvodjac());
-			
 			modelVozilaResult.add(modelVozilaDto);
 			
-			if(modelVozilaDao.getKarakteristikeVozilaDao()!= null) {
+			if(modelVozilaDao.getKarakteristikeVozilaDao() != null) {
 				KarakteristikeVozilaDto karakteristikeVozilaDto = new KarakteristikeVozilaDto();
 				karakteristikeVozilaDto.setId(modelVozilaDao.getKarakteristikeVozilaDao().getId());
 				karakteristikeVozilaDto.setBoja(modelVozilaDao.getKarakteristikeVozilaDao().getBoja());
@@ -57,8 +56,6 @@ public class ModelVozilaServiceImpl implements ModelVozilaService {
 				
 				modelVozilaDto.setKarakteristikeVozilaDto(karakteristikeVozilaDto);
 			}
-			
-			modelVozilaResult.add(modelVozilaDto);
 			
 		}
 		
